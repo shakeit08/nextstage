@@ -45,6 +45,11 @@ nav .links::-webkit-scrollbar{display:none}
 nav .links a{text-decoration:none;font-size:12px;padding:6px 10px;border-radius:20px;white-space:nowrap;color:#dbe7ff}
 nav .links a b{color:var(--pink);font-family:"Space Mono",monospace;margin-right:4px}
 nav .links a:hover,nav .links a.on{background:var(--blue);color:#fff}
+.lang{flex-shrink:0;height:30px;padding:0 10px;border-radius:16px;border:2px solid var(--pink);color:var(--pink);font-family:"Space Mono",monospace;font-size:12px;font-weight:700;margin-right:6px}
+.lang:hover{background:var(--pink);color:var(--navy)}
+.glang{display:flex;border:3px solid var(--navy);background:#fff}
+.glang button{padding:6px 16px;font-weight:800;font-size:13px}
+.glang button.on{background:var(--navy);color:#fff}
 .snd{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .snd button{width:34px;height:34px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-size:15px}
 .snd input{width:70px;accent-color:var(--pink)}
@@ -197,19 +202,20 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
 <div id="gate">
   <img src="assets/title.png" alt="NEXT STAGE SEASON 1">
   <div class="btns">
-    <button class="gbtn pri" data-snd="1">♪ 입장하기</button>
-    <button class="gbtn" data-snd="0">소리 없이 입장</button>
+    <button class="gbtn pri" data-snd="1">♪ <span data-t="enter">입장하기</span></button>
+    <button class="gbtn" data-snd="0"><span data-t="mute">소리 없이 입장</span></button>
   </div>
-  <div class="hint">입장하면 배경음악이 재생됩니다. 상단에서 언제든 끌 수 있어요.</div>
+  <div class="glang"><button data-l="ko">한국어</button><button data-l="en">English</button></div>
+  <div class="hint" data-t="hint">입장하면 배경음악이 재생됩니다. 상단에서 언제든 끌 수 있어요.</div>
 </div>
 
 <nav>
   <div class="in">
     <span class="logo disp">NEXT STAGE</span>
     <div class="links">
-      <a href="#season"><b>01</b>시즌</a><a href="#role"><b>02</b>역할</a><a href="#features"><b>03</b>기능</a><a href="#cast"><b>04</b>참가자</a><a href="#start"><b>05</b>시작</a>
+      <a href="#season"><b>01</b><span data-t="n1">시즌</span></a><a href="#role"><b>02</b><span data-t="n2">역할</span></a><a href="#features"><b>03</b><span data-t="n3">기능</span></a><a href="#cast"><b>04</b><span data-t="n4">참가자</span></a><a href="#start"><b>05</b><span data-t="n5">시작</span></a>
     </div>
-    <div class="snd"><button id="sndBtn" aria-label="배경음악">♪</button><input id="vol" type="range" min="0" max="1" step="0.05" value="0.45" aria-label="음량"></div>
+    <button class="lang" id="langBtn" aria-label="Language">EN</button><div class="snd"><button id="sndBtn" aria-label="배경음악">♪</button><input id="vol" type="range" min="0" max="1" step="0.05" value="0.45" aria-label="음량"></div>
   </div>
 </nav>
 
@@ -218,7 +224,7 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
 </header>
 
 <main class="wrap">
-  <div class="chips"><span class="chip">12 EPISODES</span><span class="chip" style="background:var(--pink);color:var(--navy)">참가자 30인 + 생성 연습생</span><span class="chip" style="background:var(--lime);color:var(--navy)">한국어 · English</span></div>
+  <div class="chips"><span class="chip">12 EPISODES</span><span class="chip" style="background:var(--pink);color:var(--navy)"><span data-t="chip2">참가자 30인 + 생성 연습생</span></span><span class="chip" style="background:var(--lime);color:var(--navy)">한국어 · English</span></div>
 
   <div class="win fade">
     <div class="bar"><span>NEXT_STAGE_TEASER.mp4</span><span>—&nbsp;○&nbsp;×</span></div>
@@ -227,9 +233,9 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
 
   <section id="season">
     <div class="sh fade"><span class="num">01.</span><div class="band"><h2>SEASON</h2><small>12 EPISODES · 7 DEBUT</small></div></div>
-    <p class="lead fade">약 100명이 입소해 12화 동안 경쟁하고, 마지막 생방송에서 일곱 명이 데뷔합니다.</p>
+    <p class="lead fade" data-t="lead">약 100명이 입소해 12화 동안 경쟁하고, 마지막 생방송에서 일곱 명이 데뷔합니다.</p>
     <div class="stats fade">
-      <div class="stat"><b>98</b><span>입소</span></div><div class="stat"><b>60</b><span>EP04</span></div><div class="stat"><b>35</b><span>EP06</span></div>
+      <div class="stat"><b>98</b><span data-t="entry">입소</span></div><div class="stat"><b>60</b><span>EP04</span></div><div class="stat"><b>35</b><span>EP06</span></div>
       <div class="stat"><b>20</b><span>EP08</span></div><div class="stat"><b>12</b><span>EP09</span></div><div class="stat final"><b>07</b><span>DEBUT</span></div>
     </div>
     <div class="road fade" id="road"></div>
@@ -238,30 +244,30 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
   <section id="role">
     <div class="sh fade"><span class="num">02.</span><div class="band"><h2>YOUR ROLE</h2><small>CHOOSE ONE</small></div></div>
     <div class="roles">
-      <div class="role fade" style="--c:var(--blue)"><div class="top"><h3>CONTESTANT</h3><span>No.31</span></div><div class="body"><div class="q">무대에 설 것인가</div><p>참가자 P31로 입소. 훈련하고 미션을 치르고 순위를 받습니다.</p><blockquote>“……추가 참가자도 있었어?”</blockquote></div></div>
-      <div class="role fade" style="--c:var(--pink);--t:var(--navy)"><div class="top"><h3>PRODUCER</h3><span>STAFF</span></div><div class="body"><div class="q">무대를 만들 것인가</div><p>제작진으로 합류. 참가자를 가르치고 무대를 구성하고 평가합니다.</p><blockquote>“누구부터 보실까요?”</blockquote></div></div>
-      <div class="role fade" style="--c:var(--lime);--t:var(--navy)"><div class="top"><h3>FAN</h3><span>VOTE</span></div><div class="body"><div class="q">무대를 지킬 것인가</div><p>시청자로 참여. 방송을 보고 응원하고 투표합니다.</p><blockquote>아직 첫 투표도 열리지 않았는데, 영업은 이미 시작이었다.</blockquote></div></div>
+      <div class="role fade" style="--c:var(--blue)"><div class="top"><h3>CONTESTANT</h3><span>No.31</span></div><div class="body"><div class="q"><span data-t="q1">무대에 설 것인가</span></div><p><span data-t="p1">참가자 P31로 입소. 훈련하고 미션을 치르고 순위를 받습니다.</span></p><blockquote><span data-t="b1">“……추가 참가자도 있었어?”</span></blockquote></div></div>
+      <div class="role fade" style="--c:var(--pink);--t:var(--navy)"><div class="top"><h3>PRODUCER</h3><span>STAFF</span></div><div class="body"><div class="q"><span data-t="q2">무대를 만들 것인가</span></div><p><span data-t="p2">제작진으로 합류. 참가자를 가르치고 무대를 구성하고 평가합니다.</span></p><blockquote><span data-t="b2">“누구부터 보실까요?”</span></blockquote></div></div>
+      <div class="role fade" style="--c:var(--lime);--t:var(--navy)"><div class="top"><h3>FAN</h3><span>VOTE</span></div><div class="body"><div class="q"><span data-t="q3">무대를 지킬 것인가</span></div><p><span data-t="p3">시청자로 참여. 방송을 보고 응원하고 투표합니다.</span></p><blockquote><span data-t="b3">아직 첫 투표도 열리지 않았는데, 영업은 이미 시작이었다.</span></blockquote></div></div>
     </div>
-    <div class="orrole">OR … 직접 정한 역할로 시작</div>
+    <div class="orrole"><span data-t="or">OR … 직접 정한 역할로 시작</span></div>
   </section>
 
   <section id="features">
     <div class="sh fade"><span class="num">03.</span><div class="band"><h2>FEATURES</h2><small>WHAT YOU GET</small></div></div>
     <div class="feat fade">
-      <div class="ft"><h4><b>01</b>상태창</h4><p>능력치·인기도, 변화는 ▲▼</p></div>
-      <div class="ft"><h4><b>02</b>투표 · 순위 발표</h4><p>득표·탈락 자동 계산, 한 칸씩 공개</p></div>
-      <div class="ft"><h4><b>03</b>참가자 도감</h4><p>30인 증명사진과 프로필</p></div>
-      <div class="ft"><h4><b>04</b>전략 카드 · 주사위</h4><p>카드로 무대 판정, 끄면 스토리 모드</p></div>
-      <div class="ft"><h4><b>05</b>마이너 갤러리</h4><p>방송 반응이 글과 댓글로</p></div>
-      <div class="ft"><h4><b>06</b>감정 이미지</h4><p>30인 표정 494장</p></div>
-      <div class="ft"><h4><b>07</b>본문 언어</h4><p>한국어 / English</p></div>
-      <div class="ft"><h4><b>08</b>보조 모델 분리</h4><p>상태 기록·이미지·갤러리 따로 처리</p></div>
+      <div class="ft"><h4><b>01</b><span data-t="f1">상태창</span></h4><p><span data-t="f1d">능력치·인기도, 변화는 ▲▼</span></p></div>
+      <div class="ft"><h4><b>02</b><span data-t="f2">투표 · 순위 발표</span></h4><p><span data-t="f2d">득표·탈락 자동 계산, 한 칸씩 공개</span></p></div>
+      <div class="ft"><h4><b>03</b><span data-t="f3">참가자 도감</span></h4><p><span data-t="f3d">30인 증명사진과 프로필</span></p></div>
+      <div class="ft"><h4><b>04</b><span data-t="f4">전략 카드 · 주사위</span></h4><p><span data-t="f4d">카드로 무대 판정, 끄면 스토리 모드</span></p></div>
+      <div class="ft"><h4><b>05</b><span data-t="f5">마이너 갤러리</span></h4><p><span data-t="f5d">방송 반응이 글과 댓글로</span></p></div>
+      <div class="ft"><h4><b>06</b><span data-t="f6">감정 이미지</span></h4><p><span data-t="f6d">30인 표정 494장</span></p></div>
+      <div class="ft"><h4><b>07</b><span data-t="f7">본문 언어</span></h4><p>한국어 / English</p></div>
+      <div class="ft"><h4><b>08</b><span data-t="f8">보조 모델 분리</span></h4><p><span data-t="f8d">상태 기록·이미지·갤러리 따로 처리</span></p></div>
     </div>
     <div class="shots">
-      <div class="shot fade" style="--c:var(--red)"><span class="lab">01 · 상태창</span><div class="frame" data-src="assets/shots/status.png"></div></div>
-      <div class="shot fade"><span class="lab">02 · 순위 발표</span><div class="frame" data-src="assets/shots/ranking.png"></div></div>
-      <div class="shot fade" style="--c:var(--navy)"><span class="lab">04 · 전략 카드</span><div class="frame" data-src="assets/shots/cards.png"></div></div>
-      <div class="shot fade" style="--c:#d9703f"><span class="lab">05 · 마이너 갤러리</span><div class="frame" data-src="assets/shots/gallery.png"></div></div>
+      <div class="shot fade" style="--c:var(--red)"><span class="lab"><span data-t="s1">01 · 상태창</span></span><div class="frame" data-src="assets/shots/status.png"></div></div>
+      <div class="shot fade"><span class="lab"><span data-t="s2">02 · 순위 발표</span></span><div class="frame" data-src="assets/shots/ranking.png"></div></div>
+      <div class="shot fade" style="--c:var(--navy)"><span class="lab"><span data-t="s4">04 · 전략 카드</span></span><div class="frame" data-src="assets/shots/cards.png"></div></div>
+      <div class="shot fade" style="--c:#d9703f"><span class="lab"><span data-t="s5">05 · 마이너 갤러리</span></span><div class="frame" data-src="assets/shots/gallery.png"></div></div>
     </div>
   </section>
 
@@ -271,7 +277,7 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
     <div class="banner fade" id="banner" style="display:none"><img id="bimg" alt=""><div class="cap"><span class="disp" id="bt"></span><small id="bs"></small></div></div>
     <div class="cast" id="castgrid"></div>
     <details class="staff fade">
-      <summary><span>제작진 · MC 9인</span><span>펼치기</span></summary>
+      <summary><span><span data-t="staff">제작진 · MC 9인</span></span><span data-t="open">펼치기</span></summary>
       <div class="sl" id="staff"></div>
     </details>
   </section>
@@ -279,21 +285,21 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
   <section id="start">
     <div class="sh fade"><span class="num">05.</span><div class="band"><h2>HOW TO</h2><small>START</small></div></div>
     <div class="steps fade">
-      <div class="st"><i>1</i>첫 메시지에서 역할·언어·세부 설정 선택</div>
-      <div class="st"><i>2</i>'이 설정으로 시작'을 누르면 입소</div>
-      <div class="st"><i>3</i>상태창·카드·갤러리·감정 이미지는 커스텀 토글에서 조절</div>
+      <div class="st"><i>1</i><span data-t="st1">첫 메시지에서 역할·언어·세부 설정 선택</span></div>
+      <div class="st"><i>2</i><span data-t="st2">'이 설정으로 시작'을 누르면 입소</span></div>
+      <div class="st"><i>3</i><span data-t="st3">상태창·카드·갤러리·감정 이미지는 커스텀 토글에서 조절</span></div>
     </div>
-    <div class="note fade"><b>안내</b>보조 모델 기능은 Low Level Access와 보조 모델 설정이 필요합니다.</div>
+    <div class="note fade"><b><span data-t="notel">안내</span></b><span data-t="note">보조 모델 기능은 Low Level Access와 보조 모델 설정이 필요합니다.</span></div>
     <div class="ticket fade">
-      <div class="l"><small>★ ★ ★ CHAMPIONSHIP · SEASON 1</small><b>본방 사수!</b><small>ADMIT ONE · EP.01 — EP.12</small></div>
-      <a id="dl" href="#" target="_blank" rel="noopener">다운로드<br><small>새 탭</small></a>
+      <div class="l"><small>★ ★ ★ CHAMPIONSHIP · SEASON 1</small><b><span data-t="tk">본방 사수!</span></b><small>ADMIT ONE · EP.01 — EP.12</small></div>
+      <a id="dl" href="#" target="_blank" rel="noopener"><span data-t="dl1">다운로드</span><br><small><span data-t="dl2">새 탭</span></small></a>
     </div>
   </section>
 </main>
 
 <footer>
   <span class="disp">✦ NEXT STAGE ✦</span>
-  현대 · 음악 · 경쟁 · 연예계 드라마 · 블랙코미디 · 일상 · 선택적 로맨스
+  <span data-t="foot">현대 · 음악 · 경쟁 · 연예계 드라마 · 블랙코미디 · 일상 · 선택적 로맨스</span>
 </footer>
 
 <div class="modal" id="cm"><div class="mbox" id="cmb"></div></div>
@@ -339,8 +345,73 @@ pv.addEventListener("play",()=>{if(!bgm.paused){bgm.pause();setBtn()}});
 pv.addEventListener("pause",()=>{if(want&&!pv.ended)playB()});
 pv.addEventListener("ended",()=>{if(want)playB()});
 
+/* ===== i18n ===== */
+const EN={enter:"Enter",mute:"Enter muted",hint:"Background music plays on entry. You can turn it off anytime at the top.",
+n1:"Season",n2:"Role",n3:"Features",n4:"Cast",n5:"Start",chip2:"30 named contestants + generated trainees",
+lead:"About 100 trainees enter, compete over 12 episodes, and seven debut on the live finale.",entry:"ENTRY",
+q1:"Will you take the stage?",p1:"Join as contestant P31. Train, clear missions, and get ranked.",b1:"“……There was an extra contestant?”",
+q2:"Will you build the stage?",p2:"Join the production team. Teach contestants, design stages, and judge them.",b2:"“Who would you like to see first?”",
+q3:"Will you guard the stage?",p3:"Join as a viewer. Watch the show, cheer, and vote.",b3:"The first vote hadn't even opened, and the fan campaigns had already begun.",
+or:"OR … start with a role of your own",
+f1:"Status Window",f1d:"Stats & popularity, changes shown as ▲▼",f2:"Votes · Rank Reveal",f2d:"Auto-tallied votes & eliminations, revealed one by one",
+f3:"Contestant Index",f3d:"30 ID photos & profiles",f4:"Strategy Cards · Dice",f4d:"Cards decide stage results; turn off for story mode",
+f5:"Minor Gallery",f5d:"Fan reactions as posts & comments",f6:"Emotion Images",f6d:"494 expressions for 30 contestants",
+f7:"Narration Language",f8:"Auxiliary Model",f8d:"Status logs, images & gallery handled separately",
+s1:"01 · Status Window",s2:"02 · Rank Reveal",s4:"04 · Strategy Cards",s5:"05 · Minor Gallery",
+staff:"Production · MC (9)",open:"",st1:"In the first message, pick role, language & options (setup screen is in Korean)",
+st2:"Press '이 설정으로 시작' (Start) to enter",st3:"Status window, cards, gallery & emotion images are set in Custom Toggles",
+notel:"NOTE",note:"Auxiliary-model features require Low Level Access and an auxiliary model setting.",tk:"Don't miss it!",dl1:"Download",dl2:"new tab",
+foot:"Modern · Music · Competition · Showbiz drama · Black comedy · Slice of life · Optional romance"};
+const EPS_EN=["First Check","Signal Song Re-evaluation","Group Battle","Position Evaluation","Concept Evaluation","Producer Mission","Debut Evaluation","Live Finale"];
+const VOTE_EN=["","V00 · Mid-ranking","V01 · Top 60","V02 · Top 35","V03 · Top 20","V04 · Top 12","V05 · Final 7",""];
+const CAT_EN={classic:"Classic Idol",visual:"Visual Kei",athletic:"Athletic",fresh:"Fresh & Boyish",actor:"Actor & Model",indiv:"Individualist"};
+const STAFF_EN={M01:["Chief Music Producer","Gruff and technically precise; slow to revise a first impression."],M02:["Performance Producer","Bob-haired choreographer; a vivid teacher who gives her favorites another chance."],M03:["Rap Producer","Rapper and lyricist; merciless about flow and diction."],M04:["Idol Producer","Former boy-group member; sharp about what audiences remember."],S01:["Main PD","A smiling negotiator who controls filming and edits, and loves a good story."],S02:["Head Writer","Attentive interviewer who remembers exactly what you said."],S03:["Contestant Manager","Tired, practical, and genuinely helpful."],H01:["Main MC","Calm and precise; stretches every rank reveal a little too long."],H02:["Co-MC","Active girl-group idol who handles backstage interviews."]};
+const CH_EN={
+P01:["A sixth-year all-rounder and former captain of a debut team that got canceled. Flawless stage control and dependable leadership.",["All-rounder","Leader","6th year"]],
+P02:["A former model with eight months of training. Incredible proportions and candid charm; the fundamentals still need work.",["Ex-model","Proportions","8 months"]],
+P03:["A quiet main-vocal candidate. Fine features and a soft face, with exacting opinions once music comes up.",["Main vocal","Delicate","Perfectionist"]],
+P04:["A platinum-haired dance specialist. A stage that pulls every eye, and a genuinely sharp tongue.",["Dance","Platinum","Blunt"]],
+P05:["A former idol-group leader back for another shot with his core fandom. Warm, witty, and experienced.",["Ex-leader","Second chance","Fandom"]],
+P06:["A black-curled singer-songwriter with a single silver clip. A sleepy-eyed arranger who turns firm the moment music is on the line.",["Songwriter","Arranger","Hoodie"]],
+P07:["A natural variety performer. Reads the room fast, and turns other people's awkward moments into great footage.",["Variety","Reactions","Screen time"]],
+P08:["The oldest contestant and a seventh-year dance trainee. A sharp profile, guarded warmth, and one last chance.",["Oldest","Dance","7th year"]],
+P09:["A performance prodigy with just one year of training. Bright, quick to learn, still immature about the daily routine.",["Prodigy","Youngest line","1st year"]],
+P10:["A broad-shouldered live-event performer. Warmth that wins any crowd, and jealousy he can't hide when attention is shared.",["Performer","Fan service","Warm"]],
+P11:["A former office worker and band vocalist. Mature looks and a rich tone; fan service still makes him shy.",["Band","Ex-office worker","Tone"]],
+P12:["An LA-raised Korean American rapper. Orange curls, a straight talker, and a fan with a very firm bias.",["Rapper","Korean American","Direct"]],
+P13:["A polished former child actor. Steady vocals and a careful negotiator's instincts.",["Vocal","Ex-child actor","Careful"]],
+P14:["A clean, high-energy dance trainee. Reliable in a team, but easily swept up by the group mood.",["Dance","Energy","Youngest line"]],
+P15:["A trainee once pushed out of a debut lineup. Measured vocals, quiet ambition, and a need for fair decisions.",["Vocal","Second chance","Ambition"]],
+P16:["A classical tenor with a wine-red wolf cut. Proud composure, a telltale pout, and dance skills just getting started.",["Tenor","Classical","Proud"]],
+P17:["A theatrical vocalist with a lavender half-updo. Expressive and generous, but the memorable moment should be his.",["Musical","Vocal","Ribbon"]],
+P18:["A feline-eyed dancer with a silver-streaked cobalt bob. A sharp stylist who guards his originality.",["Dance","Styling","Cat-eyed"]],
+P19:["A long-haired band vocalist. Calming to be around, and very good at avoiding what he'd rather not face.",["Band","Vocal","Long hair"]],
+P20:["A broad-backed former swimmer. Disciplined and encouraging, but measures everyone by his own stamina.",["Ex-swimmer","Stamina","Diligent"]],
+P21:["A compact acrobatic dancer. A fierce face, a loud laugh, loyal and impulsive.",["Acrobatics","Loyal","Gap"]],
+P22:["A former junior national figure skater. The elegant 'ice prince' and a competitor who struggles to share credit.",["Ex-skater","Lines","Competitive"]],
+P23:["A choir-trained vocalist with fluffy wheat-blond hair. A sweet people-pleaser learning to choose for himself.",["Choir","Vocal","Gentle"]],
+P24:["A copper-curled short-form dancer. Full of ideas and great at pulling people in, though friends tend to become content.",["Short-form","Dance","Social"]],
+P25:["A former Osaka underground idol and anime-song cover singer. Pink inner color, snaggletooth grin, calculated cuteness.",["Ex-underground idol","Anisong","Japan"]],
+P26:["A long-faced actor visual. Calm and perceptive, always keeping other options open.",["Actor visual","Calm","Observant"]],
+P27:["An art-school visual with a taupe jellyfish cut. Languid and imaginative, a soft-spoken tease with friends.",["Art student","Languid","Imaginative"]],
+P28:["A mature, broad-shouldered visual from the service industry. A warm baritone and impeccable manners.",["Baritone","Manners","Mature"]],
+P29:["Very tall, short-haired, sculpted visual. Intimidating at first, earnest and eager once you know him, and rigid about fairness.",["Tall","Sculpted","Principled"]],
+P30:["A compact, distinctive vocal technician. Funny and helpful, but touchy about looks and recognition.",["Vocal","Technique","Comedy"]]};
+let LANG=(()=>{const q=new URLSearchParams(location.search).get("lang");if(q==="en"||q==="ko")return q;try{const s=localStorage.getItem("ns_lang");if(s)return s}catch(e){}return (navigator.language||"ko").toLowerCase().startsWith("ko")?"ko":"en"})();
+const KO={};document.querySelectorAll("[data-t]").forEach(e=>KO[e.dataset.t]=e.innerHTML);
+const nm=c=>LANG==="en"?c.en:c.ko;
+function applyLang(){document.documentElement.lang=LANG;
+  document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;e.innerHTML=LANG==="en"&&k in EN?EN[k]:KO[k]});
+  $("#langBtn").textContent=LANG==="en"?"KO":"EN";
+  document.querySelectorAll(".glang button").forEach(b=>b.classList.toggle("on",b.dataset.l===LANG));
+  try{localStorage.setItem("ns_lang",LANG)}catch(e){}
+  renderRoad();renderFilters();renderCast();renderStaff();filt(curF)}
+function setLang(l){LANG=l;applyLang()}
+$("#langBtn").onclick=()=>setLang(LANG==="en"?"ko":"en");
+document.querySelectorAll(".glang button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+
 /* roadmap */
-EPS.forEach(([n,t,v,s,f])=>{const d=el("div",{class:"ep "+s});d.innerHTML=`<div class="dot">${s==="done"?"✓":""}</div><div><small>${n}</small>${s==="now"?'<span class="now-tag">지금</span>':""}<h4>${t}</h4>${v?`<span class="vote${f?" final":""}">${v}</span>`:""}</div>`;$("#road").append(d)});
+function renderRoad(){$("#road").innerHTML="";EPS.forEach(([n,t,v,s,f],i)=>{if(LANG==="en"){t=EPS_EN[i];v=VOTE_EN[i]}const d=el("div",{class:"ep "+s});d.innerHTML=`<div class="dot">${s==="done"?"✓":""}</div><div><small>${n}</small>${s==="now"?`<span class="now-tag">${LANG==="en"?"NOW":"지금"}</span>`:""}<h4>${t}</h4>${v?`<span class="vote${f?" final":""}">${v}</span>`:""}</div>`;$("#road").append(d)})}
 
 /* shots */
 document.querySelectorAll(".frame").forEach(f=>{const i=new Image();i.alt="";i.onload=()=>{f.innerHTML="";f.append(i);f.onclick=()=>openLB(i.src,f.previousElementSibling.textContent)};i.onerror=()=>{f.innerHTML='<div class="ph">IMAGE COMING SOON</div>';f.style.cursor="default"};i.src=f.dataset.src});
@@ -352,24 +423,25 @@ $("#lb").onclick=()=>{$("#lb").classList.remove("on");if(!$("#cm").classList.con
 
 /* cast */
 let curF="all";
-const F=[["all","전체"]].concat(Object.entries(CATS).map(([k,v])=>[k,v.ko]));
-F.forEach(([k,n])=>{const b=el("button",{class:"fl"+(k==="all"?" on":""),"data-k":k},n);b.onclick=()=>filt(k);$("#filters").append(b)});
-CHARS.forEach(c=>{const C=CATS[c.cat];const b=el("button",{class:"cc","data-cat":c.cat,style:`--c:${C.c}`},`<img src="assets/dex/${c.id}.webp" alt="${c.ko}" loading="lazy"><span class="id">${c.id}</span><div class="nm"><b>${c.ko}</b><small>${C.en}</small></div>`);b.onclick=()=>openC(c.id);$("#castgrid").append(b)});
+function renderFilters(){$("#filters").innerHTML="";[["all",LANG==="en"?"All":"전체"]].concat(Object.entries(CATS).map(([k,v])=>[k,LANG==="en"?CAT_EN[k]:v.ko])).forEach(([k,n])=>{const b=el("button",{class:"fl"+(k===curF?" on":""),"data-k":k},n);b.onclick=()=>filt(k);$("#filters").append(b)})}
+function renderCast(){$("#castgrid").innerHTML="";CHARS.forEach(c=>{const C=CATS[c.cat];const b=el("button",{class:"cc","data-cat":c.cat,style:`--c:${C.c}`},`<img src="assets/dex/${c.id}.webp" alt="${nm(c)}" loading="lazy"><span class="id">${c.id}</span><div class="nm"><b>${nm(c)}</b><small>${C.en}</small></div>`);b.onclick=()=>openC(c.id);$("#castgrid").append(b)})}
 function filt(k){curF=k;document.querySelectorAll(".fl").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
   document.querySelectorAll(".cc").forEach(c=>c.style.display=(k==="all"||c.dataset.cat===k)?"":"none");
   const bn=$("#banner");if(k==="all"){bn.style.display="none";return}
-  const C=CATS[k];bn.style.display="";bn.style.background=C.c;$("#bimg").src="assets/banner/"+C.b;$("#bt").textContent=C.en;$("#bt").style.color=C.t;$("#bs").textContent=C.ko+" · "+CHARS.filter(x=>x.cat===k).map(x=>x.ko).join(" · ");$("#bs").style.color=C.t}
+  const C=CATS[k];bn.style.display="";bn.style.background=C.c;$("#bimg").src="assets/banner/"+C.b;$("#bt").textContent=C.en;$("#bt").style.color=C.t;$("#bs").textContent=(LANG==="en"?CAT_EN[k]:C.ko)+" · "+CHARS.filter(x=>x.cat===k).map(nm).join(" · ");$("#bs").style.color=C.t}
 function openC(id){const c=CHARS.find(x=>x.id===id),C=CATS[c.cat];const m=$("#cmb");m.style.setProperty("--c",C.c);m.style.setProperty("--t",C.t);
-  m.innerHTML=`<button class="mclose" aria-label="닫기">×</button><div class="mgrid"><div class="ph"><img src="assets/dex/${c.id}.webp" alt="${c.ko}"></div><div class="info"><span class="cat">${c.id} · ${C.en}</span><h3>${c.ko}</h3><div class="en">${c.en.toUpperCase()} · ${c.age}</div><p class="desc">${c.desc}</p><div class="tags">${c.tags.map(t=>`<span>${t}</span>`).join("")}</div></div></div>`;
+  const en=LANG==="en",E=CH_EN[c.id];
+  m.innerHTML=`<button class="mclose" aria-label="${en?"Close":"닫기"}">×</button><div class="mgrid"><div class="ph"><img src="assets/dex/${c.id}.webp" alt="${nm(c)}"></div><div class="info"><span class="cat">${c.id} · ${C.en}</span><h3>${en?c.en:c.ko}</h3><div class="en">${en?c.ko+" · AGE "+c.age:c.en.toUpperCase()+" · "+c.age}</div><p class="desc">${en?E[0]:c.desc}</p><div class="tags">${(en?E[1]:c.tags).map(t=>`<span>${t}</span>`).join("")}</div></div></div>`;
   m.querySelector(".mclose").onclick=closeC;
-  
   $("#cm").classList.add("on");document.body.classList.add("locked")}
 function closeC(){$("#cm").classList.remove("on");document.body.classList.remove("locked")}
 $("#cm").onclick=e=>{if(e.target.id==="cm")closeC()};
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("#lb").classList.contains("on"))$("#lb").click();else closeC()}});
 
 /* staff */
-STAFF.forEach(([i,n,r,d])=>$("#staff").append(el("div",{},`<b>${i}</b><strong>${n}</strong> — ${r}<p>${d}</p>`)));
+const STAFF_ROMA={M01:"Kang Jaemun",M02:"Oh Serin",M03:"Ma Jinhyeok",M04:"Heo Seungwon",S01:"Min Jeongwoo",S02:"Bae Sujin",S03:"Im Doyoon",H01:"Yoo Seonghwan",H02:"Chae Seoryeong"};
+function renderStaff(){$("#staff").innerHTML="";STAFF.forEach(([i,n,r,d])=>{if(LANG==="en"){n=STAFF_ROMA[i];[r,d]=STAFF_EN[i]}$("#staff").append(el("div",{},`<b>${i}</b><strong>${n}</strong> — ${r}<p>${d}</p>`))})}
+applyLang();
 
 /* reveal + nav highlight */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
