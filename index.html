@@ -299,8 +299,8 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
   -webkit-mask:linear-gradient(120deg,#000,transparent 40%,transparent 60%,#000);mask:linear-gradient(120deg,#000,transparent 40%,transparent 60%,#000)}
 .snl .desk{position:relative;--pw:360px;--ov:70px;width:min(1300px,100%,calc((100vh - 150px)*1.4615 + var(--pw) - var(--ov)))}
 .snl .wnd{background:#fff;border:3px solid var(--ink2)}
-.snl .wa{width:calc(100% - var(--pw) + var(--ov));box-shadow:12px 12px 0 var(--c),12px 12px 0 3px var(--ink2)}
-.snl .wb{position:absolute;right:0;top:16%;width:var(--pw);z-index:3;box-shadow:10px 10px 0 var(--ink2);transition:opacity .3s,transform .3s}
+.snl .wa{width:calc(100% - var(--pw) + var(--ov));box-shadow:12px 12px 0 var(--c2),12px 12px 0 3px var(--ink2)}
+.snl .wb{position:absolute;right:0;top:16%;width:var(--pw);z-index:3;box-shadow:10px 10px 0 var(--sh);transition:opacity .3s,transform .3s}
 .snl.cardoff .wb{opacity:0;transform:translateY(16px);pointer-events:none}
 .snl.cardoff .desk{--pw:0px;--ov:0px}
 .snl.go .wa{animation:wndIn .5s cubic-bezier(.2,.9,.3,1.2) both}
@@ -314,7 +314,11 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
 .snl .tb button:hover{background:#fff;color:var(--ink2)}
 .snl .tb .x{background:var(--red);border-color:var(--red)}
 .snl .tb .n{color:var(--pink)}
-.snl .wb .tb{background:var(--c);color:var(--t);cursor:grab}
+.snl .wb .tb{background:var(--c2);color:var(--t2);cursor:grab}
+.snl .cd .q::before{color:var(--sh)}
+.snl .cd .q::after{border-top-color:var(--sh)}
+.snl .cd .cat{background:var(--c2);color:var(--t2)}
+.bm.snl .bdots{background-image:radial-gradient(circle,var(--c2) 26%,transparent 30%)}
 .snl .wb .tb b{color:inherit;opacity:.7}
 .snl .wb .tb .dots3{letter-spacing:.3em;opacity:.8}
 .snl .stage{position:relative;aspect-ratio:1216/832;overflow:hidden;background:#05070f}
@@ -332,15 +336,15 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
 .snl.go .ghost{animation:snlGh 8s linear both}
 @keyframes snlGh{from{transform:translateX(5%)}}
 .snl .ttl{position:absolute;left:4%;bottom:6%;right:4%}
-.snl .ttl small{display:inline-block;font:700 11px "Space Mono",monospace;letter-spacing:.42em;margin-bottom:8px;padding-bottom:3px;border-bottom:3px solid var(--c)}
+.snl .ttl small{display:inline-block;font:700 11px "Space Mono",monospace;letter-spacing:.42em;margin-bottom:8px;padding-bottom:3px;border-bottom:3px solid var(--c2)}
 .snl .ttl h2{position:relative;font:900 clamp(40px,5.6vw,96px)/.86 Archivo,sans-serif;letter-spacing:-.025em;text-transform:uppercase;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.5)}
 .snl .ttl h2 .w{display:block;overflow:hidden}.snl .ttl h2 .w span{display:block}
 .snl.go .ttl h2 .w span{animation:snlUp .7s .15s cubic-bezier(.2,.8,.2,1) both}
 .snl.go .ttl h2 .w:nth-child(2) span{animation-delay:.27s}
 @keyframes snlUp{from{transform:translateY(105%)}}
-.snl .ttl h2 .dup{position:absolute;inset:0;color:transparent;text-shadow:none;transform:translate(8px,8px);z-index:-1;background:radial-gradient(circle,var(--c) 38%,transparent 42%) 0 0/7px 7px;-webkit-background-clip:text;background-clip:text}
+.snl .ttl h2 .dup{position:absolute;inset:0;color:transparent;text-shadow:none;transform:translate(8px,8px);z-index:-1;background:radial-gradient(circle,var(--c2) 38%,transparent 42%) 0 0/7px 7px;-webkit-background-clip:text;background-clip:text}
 .snl .ttl .sub{display:flex;align-items:center;gap:10px;margin-top:12px;font:700 14px "Noto Sans KR";text-shadow:0 1px 6px #000}
-.snl .ttl .sub em{font:700 11px "Space Mono",monospace;letter-spacing:.14em;font-style:normal;background:var(--c);color:var(--t);padding:3px 9px}
+.snl .ttl .sub em{font:700 11px "Space Mono",monospace;letter-spacing:.14em;font-style:normal;background:var(--c2);color:var(--t2);padding:3px 9px}
 .snl .rec{position:absolute;left:16px;top:12px;font:700 11px "Space Mono",monospace;letter-spacing:.2em;color:#fff;display:flex;align-items:center;gap:6px;text-shadow:0 1px 4px #000}
 .snl .rec::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red);animation:bmBlink 1s steps(2) infinite}
 .snl .cd{position:relative;left:auto;top:auto;right:auto;width:auto;max-height:calc(100vh - 260px);margin:0;border:0;box-shadow:none;overflow:auto;background:#fff}
@@ -352,8 +356,8 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
 @media(max-width:820px){
   .snl .bst{align-items:flex-start;padding:12px 12px 24px}
   .snl .desk,.snl.cardoff .desk{width:100%;--pw:0px;--ov:0px}
-  .snl .wa{width:calc(100% - 6px);box-shadow:6px 6px 0 var(--c),6px 6px 0 3px var(--ink2)}
-  .snl .wb{position:relative;top:auto;right:auto;width:calc(100% - 22px);margin:14px 0 0 16px;box-shadow:6px 6px 0 var(--ink2)}
+  .snl .wa{width:calc(100% - 6px);box-shadow:6px 6px 0 var(--c2),6px 6px 0 3px var(--ink2)}
+  .snl .wb{position:relative;top:auto;right:auto;width:calc(100% - 22px);margin:14px 0 0 16px;box-shadow:6px 6px 0 var(--sh)}
   .snl.cardoff .wb{opacity:1;transform:none;pointer-events:auto}
   .snl .cd{max-height:none}
   .snl .ttl h2{font-size:clamp(34px,11vw,60px)}
@@ -611,7 +615,7 @@ function bmRender(i,anim=true){
   bmI=(i+CHARS.length)%CHARS.length;const c=CHARS[bmI],C=CATS[c.cat],P=PROF[c.id]||[],en=LANG==="en",E=CH_EN[c.id];
   const [fam,giv]=splitName(c);const imgs=(BUMP[c.id]&&BUMP[c.id].length?BUMP[c.id].map(f=>"assets/bump/"+f):["assets/dex/"+c.id+".webp"]);
   const dark=C.t==="#13205a";BM.classList.toggle("dk",dark);
-  BM.style.setProperty("--c",C.c);BM.style.setProperty("--t",C.t);BM.style.setProperty("--sh",C.c==="#13205a"?"#ffb8d2":"#13205a");
+  BM.style.setProperty("--c",C.c);BM.style.setProperty("--t",C.t);BM.style.setProperty("--sh",C.c==="#13205a"?"#ffb8d2":"#13205a");BM.style.setProperty("--c2",C.c==="#13205a"?"#ffb8d2":C.c);BM.style.setProperty("--t2",C.c==="#13205a"?"#13205a":C.t);
   if(BUMP[c.id]&&BUMP[c.id].length)return snlRender(c,C,P,en,E,fam,giv,imgs,anim);
   BM.classList.remove("snl");
   const row=Array(6).fill(`${giv} ${fam} ✦ `).join("");
