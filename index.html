@@ -292,84 +292,68 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
   .bm .ui{position:fixed;top:34px;right:10px}
 }
 @media(prefers-reduced-motion:reduce){.bm *{animation:none!important}}
-/* ===== SNL-style bumper (when bump images exist) ===== */
-.bm.snl{background:#05070f;color:#fff}
-.snl .ph{position:absolute;left:0;right:calc(min(30vw,380px) + 3vw + 20px);top:5.5vh;bottom:5.5vh;overflow:hidden;z-index:0;transition:right .45s cubic-bezier(.2,.8,.2,1)}
-.snl.cardoff .ph{right:0}
-.snl .stage::before{content:"";position:absolute;inset:5.5vh 0;background:radial-gradient(circle,var(--c) 30%,transparent 34%) 0 0/9px 9px;opacity:.35}
-.snl .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;transform-origin:50% 0;transition:opacity .45s}
-.snl.go .ph img{animation:snlKB 9s ease-out both}
-@keyframes snlKB{from{transform:scale(1.06)}to{transform:scale(1)}}
-.snl .grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
+/* ===== SNL bumper — floating window ===== */
+.bm.snl{background:rgba(10,16,48,.78);backdrop-filter:blur(6px);color:#fff}
+.snl .bst{position:absolute;inset:0;overflow:auto;display:flex;align-items:center;justify-content:center;padding:28px 20px}
+.snl .bdots{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle,var(--c) 26%,transparent 30%) 0 0/16px 16px;opacity:.22;
+  -webkit-mask:linear-gradient(120deg,#000,transparent 40%,transparent 60%,#000);mask:linear-gradient(120deg,#000,transparent 40%,transparent 60%,#000)}
+.snl .wnd{position:relative;width:min(1240px,100%);background:#fff;border:3px solid var(--ink2);box-shadow:12px 12px 0 var(--c),12px 12px 0 3px var(--ink2)}
+.snl.go .wnd{animation:wndIn .5s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes wndIn{from{transform:translateY(24px) scale(.96);opacity:0}}
+.snl .tb{display:flex;align-items:center;gap:8px;background:var(--ink2);color:#fff;padding:7px 8px 7px 14px;font:700 12px "Space Mono",monospace;letter-spacing:.08em}
+.snl .tb .fn{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.snl .tb .fn b{color:var(--pink)}
+.snl .tb button{height:28px;min-width:30px;padding:0 9px;border:2px solid #fff3;color:#fff;font:700 12px "Space Mono",monospace;letter-spacing:.1em}
+.snl .tb button:hover{background:#fff;color:var(--ink2)}
+.snl .tb .x{background:var(--red);border-color:var(--red)}
+.snl .tb .n{color:var(--pink)}
+.snl .body{display:grid;grid-template-columns:minmax(0,1fr) 340px}
+.snl.cardoff .body{grid-template-columns:minmax(0,1fr) 0}
+.snl .stage{position:relative;aspect-ratio:1216/832;overflow:hidden;background:#05070f;max-height:calc(100vh - 160px)}
+.snl .ph{position:absolute;inset:0}
+.snl .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;transition:opacity .4s}
+.snl.go .ph img{animation:snlKB 8s ease-out both}
+@keyframes snlKB{from{transform:scale(1.05)}to{transform:scale(1)}}
+.snl .grain{position:absolute;inset:0;pointer-events:none;opacity:.18;mix-blend-mode:overlay;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:snlGr .5s steps(3) infinite}
 @keyframes snlGr{33%{transform:translate(-3%,2%)}66%{transform:translate(2%,-3%)}}
-.snl .vig{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(0deg,rgba(5,7,15,.82) 0%,rgba(5,7,15,0) 42%),linear-gradient(90deg,rgba(5,7,15,.55) 0%,rgba(5,7,15,0) 38%),radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.45))}
-.snl .lb{position:absolute;left:0;right:0;height:5.5vh;background:#000;z-index:2}.snl .lb.t{top:0}.snl .lb.b{bottom:0}
-.snl.go .lb.t{animation:snlLB .9s cubic-bezier(.7,0,.2,1) both}.snl.go .lb.b{animation:snlLB2 .9s cubic-bezier(.7,0,.2,1) both}
-@keyframes snlLB{from{height:50vh}}@keyframes snlLB2{from{height:50vh}}
-/* halftone corner */
-.snl .ht{position:absolute;z-index:1;right:-6%;bottom:-10%;width:60vw;height:60vh;pointer-events:none;mix-blend-mode:screen;opacity:.55;
+.snl .vig{position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(5,7,15,.8) 0%,rgba(5,7,15,0) 40%),linear-gradient(90deg,rgba(5,7,15,.45),rgba(5,7,15,0) 35%)}
+.snl .ht{position:absolute;right:-5%;bottom:-8%;width:55%;height:60%;pointer-events:none;mix-blend-mode:screen;opacity:.5;
   background:radial-gradient(circle,var(--c) 32%,transparent 36%) 0 0/10px 10px;-webkit-mask:radial-gradient(circle at 100% 100%,#000,transparent 70%);mask:radial-gradient(circle at 100% 100%,#000,transparent 70%)}
-/* ghost giant name */
-.snl .ghost{position:absolute;z-index:1;left:-2vw;bottom:9vh;white-space:nowrap;font:900 clamp(120px,24vw,380px)/.78 Archivo,sans-serif;font-stretch:100%;letter-spacing:-.04em;
-  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.55);mix-blend-mode:overlay;pointer-events:none}
-.snl.go .ghost{animation:snlGh 9s linear both}
-@keyframes snlGh{from{transform:translateX(6%)}to{transform:translateX(-2%)}}
-/* logo */
-.snl .logo{position:absolute;z-index:4;left:4vw;top:calc(5.5vh + 22px);display:flex;align-items:center;gap:10px;font:700 11px "Space Mono",monospace;letter-spacing:.24em;color:#fff;text-shadow:0 1px 6px #000}
-.snl .logo b{font:italic 900 22px/1 Archivo;font-stretch:120%;letter-spacing:0;padding:3px 9px;background:#fff;color:#13205a}
-.snl .logo i{font-style:normal;color:var(--red)}
-.snl .logo i::before{content:"●";margin-right:5px;animation:bmBlink 1s steps(2) infinite}
-/* title block */
-.snl .ttl{position:absolute;z-index:5;left:4vw;bottom:calc(5.5vh + 56px);max-width:62vw}
-.snl .ttl small{display:inline-block;font:700 12px "Space Mono",monospace;letter-spacing:.42em;color:#fff;margin-bottom:10px;padding-bottom:4px;border-bottom:3px solid var(--c)}
-.snl .ttl h2{position:relative;font:900 clamp(56px,8.2vw,132px)/.86 Archivo,sans-serif;font-stretch:100%;letter-spacing:-.025em;text-transform:uppercase;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.55)}
-.snl .ttl h2 .w{display:block;overflow:hidden}
-.snl .ttl h2 .w span{display:block}
-.snl.go .ttl h2 .w span{animation:snlUp .8s cubic-bezier(.2,.8,.2,1) both}
-.snl.go .ttl h2 .w:nth-child(2) span{animation-delay:.12s}
+.snl .ghost{position:absolute;left:-2%;bottom:4%;white-space:nowrap;font:900 clamp(100px,19vw,300px)/.78 Archivo,sans-serif;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.5);mix-blend-mode:overlay;pointer-events:none}
+.snl.go .ghost{animation:snlGh 8s linear both}
+@keyframes snlGh{from{transform:translateX(5%)}}
+.snl .ttl{position:absolute;left:3.5%;bottom:6%;right:3.5%}
+.snl .ttl small{display:inline-block;font:700 11px "Space Mono",monospace;letter-spacing:.42em;margin-bottom:8px;padding-bottom:3px;border-bottom:3px solid var(--c)}
+.snl .ttl h2{position:relative;font:900 clamp(44px,6.4vw,104px)/.86 Archivo,sans-serif;letter-spacing:-.025em;text-transform:uppercase;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.5)}
+.snl .ttl h2 .w{display:block;overflow:hidden}.snl .ttl h2 .w span{display:block}
+.snl.go .ttl h2 .w span{animation:snlUp .7s .15s cubic-bezier(.2,.8,.2,1) both}
+.snl.go .ttl h2 .w:nth-child(2) span{animation-delay:.27s}
 @keyframes snlUp{from{transform:translateY(105%)}}
-.snl .ttl h2 .dup{position:absolute;inset:0;color:transparent;text-shadow:none;transform:translate(10px,10px);z-index:-1;
-  background:radial-gradient(circle,var(--c) 38%,transparent 42%) 0 0/7px 7px;-webkit-background-clip:text;background-clip:text}
-.snl .ttl .sub{display:flex;align-items:center;gap:12px;margin-top:14px;font:700 15px "Noto Sans KR";text-shadow:0 1px 6px #000}
-.snl .ttl .sub em{font:700 11px "Space Mono",monospace;letter-spacing:.16em;font-style:normal;background:var(--c);color:var(--t);padding:3px 9px}
-.snl.go .ttl small,.snl.go .ttl .sub{animation:bmFade .6s .5s both}
-/* card on right, glass */
-.snl .cd{left:auto;right:3vw;top:calc(5.5vh + 64px);width:min(30vw,380px);max-height:calc(100vh - 11vh - 150px);background:rgba(255,255,255,.93);backdrop-filter:blur(6px);box-shadow:8px 8px 0 var(--c)}
-.snl .cd h3{font-size:26px}
-.snl.cardoff .cd{transform:translateX(120%);opacity:0;pointer-events:none}
-.snl .cd{transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
-.snl.go .cd{animation:snlCard .6s .6s cubic-bezier(.2,.8,.2,1) both}
-@keyframes snlCard{from{transform:translateX(40px);opacity:0}}
-.snl .thumbs{right:auto;left:4vw;bottom:auto;top:calc(5.5vh + 60px)}
-.snl .thumbs button{width:72px;height:50px;transform:none;box-shadow:none;border:2px solid #fff;opacity:.55}
-.snl .thumbs button.on{opacity:1;transform:translateY(-3px);border-color:var(--c)}
-.snl .tk{bottom:5.5vh;background:rgba(5,7,15,.75);backdrop-filter:blur(4px);height:30px}
-.snl .ui{top:calc(5.5vh + 14px)}
-.snl .ui .pc{width:auto;border-radius:20px;padding:0 14px;font:700 11px "Space Mono",monospace;letter-spacing:.14em}
-/* hide frame-layout pieces in snl */
-.snl .dots,.snl .back,.snl .no,.snl .fr,.snl .frs,.snl .fam,.snl .giv,.snl .kor,.snl .ck{display:none}
+.snl .ttl h2 .dup{position:absolute;inset:0;color:transparent;text-shadow:none;transform:translate(8px,8px);z-index:-1;background:radial-gradient(circle,var(--c) 38%,transparent 42%) 0 0/7px 7px;-webkit-background-clip:text;background-clip:text}
+.snl .ttl .sub{display:flex;align-items:center;gap:10px;margin-top:12px;font:700 14px "Noto Sans KR";text-shadow:0 1px 6px #000}
+.snl .ttl .sub em{font:700 11px "Space Mono",monospace;letter-spacing:.14em;font-style:normal;background:var(--c);color:var(--t);padding:3px 9px}
+.snl .rec{position:absolute;right:14px;top:12px;font:700 11px "Space Mono",monospace;letter-spacing:.2em;color:#fff;display:flex;align-items:center;gap:6px;text-shadow:0 1px 4px #000}
+.snl .rec::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red);animation:bmBlink 1s steps(2) infinite}
+.snl .cd{position:relative;left:auto;top:auto;right:auto;width:auto;max-height:none;margin:0;border:0;border-left:3px solid var(--ink2);box-shadow:none;overflow:auto;
+  background:#fff;transition:opacity .3s}
+.snl .stage+.cd{max-height:calc(100vh - 160px)}
+.snl.cardoff .cd{opacity:0;pointer-events:none;border:0;overflow:hidden}
+.snl .cd .hd{position:sticky;top:0;z-index:1}
+.snl.go .cd{animation:bmFade .5s .35s both}
+.snl .tk{position:relative;left:auto;right:auto;bottom:auto;height:30px;background:var(--ink2)}
+.snl .dots,.snl .back,.snl .no,.snl .fr,.snl .frs,.snl .fam,.snl .giv,.snl .kor,.snl .ck,.snl .ui,.snl .thumbs{display:none}
 @media(max-width:820px){
-  .snl .bst{overflow-y:auto}
-  .snl .stage{position:relative;height:auto;overflow:hidden;padding-top:68px}
-  .snl .stage::before{inset:0}
-  .snl .ph{position:relative!important;aspect-ratio:1216/832;height:auto}
-  .snl .ph img{object-position:50% 50%}
-  .snl .vig{background:linear-gradient(0deg,rgba(5,7,15,.9),rgba(5,7,15,0) 35%)}
-  .snl .ttl{position:relative;left:auto;right:auto;bottom:auto;padding:16px 16px 4px}
-  .snl.cardoff .cd{transform:none;opacity:1;pointer-events:auto}
-  .snl .ph,.snl .vig,.snl .ht,.snl .grain,.snl .ghost{position:absolute}
-  .snl .ttl{max-width:none}
-  .snl .ttl h2{font-size:clamp(42px,13vw,72px)}
-  .snl .ghost{bottom:30px;font-size:34vw}
-  .snl .lb{display:none}
-  .snl .ph{top:0;bottom:0;right:0}
-  .snl .logo{top:24px;left:16px}
-  .snl .thumbs{top:auto;bottom:auto;left:16px;position:relative;margin:14px 16px 0;display:flex}
-  .snl .cd{position:relative;right:auto;top:auto;width:auto;max-height:none;overflow:visible;margin:18px 16px 90px;background:#fff}
-  .snl .tk{position:fixed;bottom:0}
-  .snl .ui{top:16px}
-  .snl .ui .pc{display:none}
+  .snl .bst{align-items:flex-start;padding:12px 10px 20px}
+  .snl .wnd{box-shadow:6px 6px 0 var(--c),6px 6px 0 3px var(--ink2);width:calc(100% - 8px)}
+  .snl .body,.snl.cardoff .body{grid-template-columns:1fr}
+  .snl .stage{max-height:none}
+  .snl .ttl h2{font-size:clamp(34px,11vw,60px)}
+  .snl .ttl .sub{font-size:12px}
+  .snl .cd,.snl .stage+.cd{max-height:none;border-left:0;border-top:3px solid var(--ink2)}
+  .snl.cardoff .cd{opacity:1;pointer-events:auto;border-top:3px solid var(--ink2)}
+  .snl .tb .pc{display:none}
+  .snl .tk{position:relative;bottom:auto}
 }
 </style>
 </head>
@@ -660,30 +644,30 @@ let snlCard=innerWidth>820;
 function snlRender(c,C,P,en,E,fam,giv,imgs,anim){
   BM.classList.add("snl");BM.classList.toggle("cardoff",!snlCard);
   const tick=Array(8).fill(`STARRING <i>✦</i> ${c.en.toUpperCase()} <i>✦</i> ${c.ko} <i>✦</i> ${C.en} <i>✦</i> NEXT STAGE · LIVE <i>✦</i> `).join("");
-  BM.innerHTML=`<div class="bst"><div class="stage">
-   <div class="ph"><img src="${imgs[0]}" alt="${nm(c)}"></div><div class="vig"></div><div class="ht"></div><div class="grain"></div>
-   <div class="ghost">${giv}</div>
-   <div class="lb t"></div><div class="lb b"></div>
-   <div class="ttl"><small>${en?"STARRING":"STARRING · 출연"}</small>
-     <h2><span class="w"><span>${fam}</span></span><span class="w"><span>${giv}</span></span><span class="dup">${fam}<br>${giv}</span></h2>
-     <div class="sub"><em>${c.id} · ${C.en}</em><span>${c.ko}${c.age?" · "+c.age:""}</span></div></div>
+  BM.innerHTML=`<div class="bst"><div class="bdots"></div>
+  <div class="wnd" role="document">
+   <div class="tb"><span class="fn">NEXT_STAGE_<b>${c.id}</b>_${giv.replace(/\s+/g,"_")}.mp4</span>
+     <button class="pc" data-a="c">${en?"PROFILE":"프로필"}</button><button data-a="p" aria-label="prev">‹</button><button class="n" disabled>${String(bmI+1).padStart(2,"0")}/${CHARS.length}</button><button data-a="n" aria-label="next">›</button><button class="x" data-a="x" aria-label="${en?"Close":"닫기"}">×</button></div>
+   <div class="body"><div class="stage">
+     <div class="ph"><img src="${imgs[0]}" alt="${nm(c)}"></div><div class="vig"></div><div class="ht"></div><div class="grain"></div>
+     <div class="ghost">${giv}</div><span class="rec">REC</span>
+     <div class="ttl"><small>STARRING</small>
+       <h2><span class="w"><span>${fam}</span></span><span class="w"><span>${giv}</span></span><span class="dup">${fam}<br>${giv}</span></h2>
+       <div class="sub"><em>${c.id} · ${C.en}</em><span>${c.ko}${c.age?" · "+c.age:""}</span></div></div>
    </div>
-   ${imgs.length>1?`<div class="thumbs">${imgs.map((s,k)=>`<button data-k="${k}" class="${k?"":"on"}" style="background-image:url('${s}')" aria-label="${k+1}"></button>`).join("")}</div>`:""}
-   <aside class="cd"><div class="hd"><span>PROFILE · <b>${c.id}</b></span><span>${String(bmI+1).padStart(2,"0")} / ${CHARS.length}</span></div><div class="bd">
-     <span class="cat">${en?CAT_EN[c.cat]:C.ko}</span>
+   <aside class="cd"><div class="hd"><span>PROFILE · <b>${c.id}</b></span><span>${en?CAT_EN[c.cat]:C.ko}</span></div><div class="bd">
      <h3>${en?c.en:c.ko}</h3><div class="en">${en?c.ko:c.en.toUpperCase()}</div>
      <dl><dt>AGE</dt><dd>${c.age}</dd>${P[0]?`<dt>HEIGHT</dt><dd>${P[0]} cm</dd>`:""}<dt>${en?"BACKGROUND":"이력"}</dt><dd>${en?P[2]||"":P[1]||""}</dd></dl>
      <p class="ds">${en?E[0]:c.desc}</p>
      ${P[3]?`<div class="q">${en?P[4]:P[3]}</div>`:""}
      <div class="tg">${(en?E[1]:c.tags).map(t=>`<span>${t}</span>`).join("")}</div>
-   </div></aside>
+   </div></aside></div>
    <div class="tk"><div>${tick}</div></div>
-   <div class="ui"><button class="pc" data-a="c">${en?"PROFILE":"프로필"}</button><button data-a="p" aria-label="prev">‹</button><span>${c.id}</span><button data-a="n" aria-label="next">›</button><button data-a="x" aria-label="${en?"Close":"닫기"}">×</button></div>
-  </div>`;
+  </div></div>`;
   const q=s=>BM.querySelector(s);
   q('[data-a="p"]').onclick=()=>bmRender(bmI-1);q('[data-a="n"]').onclick=()=>bmRender(bmI+1);q('[data-a="x"]').onclick=closeC;
   q('[data-a="c"]').onclick=()=>{snlCard=!snlCard;BM.classList.toggle("cardoff",!snlCard)};
-  BM.querySelectorAll(".thumbs button").forEach(b=>b.onclick=()=>{const im=q(".ph img");im.style.opacity=0;setTimeout(()=>{im.src=imgs[+b.dataset.k];im.style.opacity=1},200);BM.querySelectorAll(".thumbs button").forEach(x=>x.classList.toggle("on",x===b))});
+  q(".bst").onclick=e=>{if(e.target===q(".bst"))closeC()};
   q(".bst").scrollTop=0;
   if(anim){BM.classList.remove("go");void BM.offsetWidth;BM.classList.add("go")}
   imgs.slice(1).forEach(s=>{const im=new Image();im.src=s});
