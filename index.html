@@ -292,6 +292,77 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
   .bm .ui{position:fixed;top:34px;right:10px}
 }
 @media(prefers-reduced-motion:reduce){.bm *{animation:none!important}}
+/* ===== SNL-style bumper (when bump images exist) ===== */
+.bm.snl{background:#05070f;color:#fff}
+.snl .ph{position:absolute;inset:0;overflow:hidden;z-index:0}
+.snl .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s}
+.snl.go .ph img{animation:snlKB 9s ease-out both}
+@keyframes snlKB{from{transform:scale(1.12) translateX(1.5%)}to{transform:scale(1.02)}}
+.snl .grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:snlGr .5s steps(3) infinite}
+@keyframes snlGr{33%{transform:translate(-3%,2%)}66%{transform:translate(2%,-3%)}}
+.snl .vig{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(0deg,rgba(5,7,15,.82) 0%,rgba(5,7,15,0) 42%),linear-gradient(90deg,rgba(5,7,15,.55) 0%,rgba(5,7,15,0) 38%),radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.45))}
+.snl .lb{position:absolute;left:0;right:0;height:5.5vh;background:#000;z-index:2}.snl .lb.t{top:0}.snl .lb.b{bottom:0}
+.snl.go .lb.t{animation:snlLB .9s cubic-bezier(.7,0,.2,1) both}.snl.go .lb.b{animation:snlLB2 .9s cubic-bezier(.7,0,.2,1) both}
+@keyframes snlLB{from{height:50vh}}@keyframes snlLB2{from{height:50vh}}
+/* halftone corner */
+.snl .ht{position:absolute;z-index:1;right:-6%;bottom:-10%;width:60vw;height:60vh;pointer-events:none;mix-blend-mode:screen;opacity:.55;
+  background:radial-gradient(circle,var(--c) 32%,transparent 36%) 0 0/10px 10px;-webkit-mask:radial-gradient(circle at 100% 100%,#000,transparent 70%);mask:radial-gradient(circle at 100% 100%,#000,transparent 70%)}
+/* ghost giant name */
+.snl .ghost{position:absolute;z-index:1;left:-2vw;bottom:9vh;white-space:nowrap;font:900 clamp(120px,24vw,380px)/.78 Archivo,sans-serif;font-stretch:100%;letter-spacing:-.04em;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.55);mix-blend-mode:overlay;pointer-events:none}
+.snl.go .ghost{animation:snlGh 9s linear both}
+@keyframes snlGh{from{transform:translateX(6%)}to{transform:translateX(-2%)}}
+/* logo */
+.snl .logo{position:absolute;z-index:4;left:4vw;top:calc(5.5vh + 22px);display:flex;align-items:center;gap:10px;font:700 11px "Space Mono",monospace;letter-spacing:.24em;color:#fff;text-shadow:0 1px 6px #000}
+.snl .logo b{font:italic 900 22px/1 Archivo;font-stretch:120%;letter-spacing:0;padding:3px 9px;background:#fff;color:#13205a}
+.snl .logo i{font-style:normal;color:var(--red)}
+.snl .logo i::before{content:"●";margin-right:5px;animation:bmBlink 1s steps(2) infinite}
+/* title block */
+.snl .ttl{position:absolute;z-index:5;left:4vw;bottom:calc(5.5vh + 56px);max-width:62vw}
+.snl .ttl small{display:inline-block;font:700 12px "Space Mono",monospace;letter-spacing:.42em;color:#fff;margin-bottom:10px;padding-bottom:4px;border-bottom:3px solid var(--c)}
+.snl .ttl h2{position:relative;font:900 clamp(56px,8.2vw,132px)/.86 Archivo,sans-serif;font-stretch:100%;letter-spacing:-.025em;text-transform:uppercase;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.55)}
+.snl .ttl h2 .w{display:block;overflow:hidden}
+.snl .ttl h2 .w span{display:block}
+.snl.go .ttl h2 .w span{animation:snlUp .8s cubic-bezier(.2,.8,.2,1) both}
+.snl.go .ttl h2 .w:nth-child(2) span{animation-delay:.12s}
+@keyframes snlUp{from{transform:translateY(105%)}}
+.snl .ttl h2 .dup{position:absolute;inset:0;color:transparent;text-shadow:none;transform:translate(10px,10px);z-index:-1;
+  background:radial-gradient(circle,var(--c) 38%,transparent 42%) 0 0/7px 7px;-webkit-background-clip:text;background-clip:text}
+.snl .ttl .sub{display:flex;align-items:center;gap:12px;margin-top:14px;font:700 15px "Noto Sans KR";text-shadow:0 1px 6px #000}
+.snl .ttl .sub em{font:700 11px "Space Mono",monospace;letter-spacing:.16em;font-style:normal;background:var(--c);color:var(--t);padding:3px 9px}
+.snl.go .ttl small,.snl.go .ttl .sub{animation:bmFade .6s .5s both}
+/* card on right, glass */
+.snl .cd{left:auto;right:3vw;top:calc(5.5vh + 64px);width:min(30vw,380px);max-height:calc(100vh - 11vh - 150px);background:rgba(255,255,255,.93);backdrop-filter:blur(6px);box-shadow:8px 8px 0 var(--c)}
+.snl .cd h3{font-size:26px}
+.snl.cardoff .cd{transform:translateX(120%);opacity:0;pointer-events:none}
+.snl .cd{transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.snl.go .cd{animation:snlCard .6s .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes snlCard{from{transform:translateX(40px);opacity:0}}
+.snl .thumbs{right:auto;left:4vw;bottom:auto;top:calc(5.5vh + 60px)}
+.snl .thumbs button{width:72px;height:50px;transform:none;box-shadow:none;border:2px solid #fff;opacity:.55}
+.snl .thumbs button.on{opacity:1;transform:translateY(-3px);border-color:var(--c)}
+.snl .tk{bottom:5.5vh;background:rgba(5,7,15,.75);backdrop-filter:blur(4px);height:30px}
+.snl .ui{top:calc(5.5vh + 14px)}
+.snl .ui .pc{width:auto;border-radius:20px;padding:0 14px;font:700 11px "Space Mono",monospace;letter-spacing:.14em}
+/* hide frame-layout pieces in snl */
+.snl .dots,.snl .back,.snl .no,.snl .fr,.snl .frs,.snl .fam,.snl .giv,.snl .kor,.snl .ck{display:none}
+@media(max-width:820px){
+  .snl .bst{overflow-y:auto}
+  .snl .stage{position:relative;height:64vh;overflow:hidden}
+  .snl.cardoff .cd{transform:none;opacity:1;pointer-events:auto}
+  .snl .ph,.snl .vig,.snl .ht,.snl .grain,.snl .ghost{position:absolute}
+  .snl .ttl{left:16px;right:16px;bottom:20px;max-width:none}
+  .snl .ttl h2{font-size:clamp(42px,13vw,72px)}
+  .snl .ghost{bottom:30px;font-size:34vw}
+  .snl .lb{display:none}
+  .snl .logo{top:24px;left:16px}
+  .snl .thumbs{top:auto;bottom:auto;left:16px;position:relative;margin:14px 16px 0;display:flex}
+  .snl .cd{position:relative;right:auto;top:auto;width:auto;max-height:none;overflow:visible;margin:18px 16px 90px;background:#fff}
+  .snl .tk{position:fixed;bottom:0}
+  .snl .ui{top:16px}
+  .snl .ui .pc{display:none}
+}
 </style>
 </head>
 <body class="locked">
@@ -535,7 +606,7 @@ function renderStaff(){$("#staff").innerHTML="";STAFF.forEach(([i,n,r,d])=>{if(L
 /* ===== bumper profile ===== */
 const PROF={"P01": ["184", "6년 차 연습생 · 무산된 데뷔조 주장 출신", "Sixth-year trainee; former captain of a canceled agency debut team", "동선부터 맞추자. 파트 얘기는 그다음에 해도 돼.", "Let's fix the blocking first. We can talk about parts afterward."], "P02": ["188", "모델 출신 · 아이돌 연습 8개월 차", "Former model; eight months of idol training", "얼굴은 출근했는데 몸이 아직 결근이에요. 한 번만 더 보여줄 수 있어요?", "My face showed up. My body is still absent. Can you show me once more?"], "P03": ["176", "실용음악 전공 · 소형 기획사 연습생", "Contemporary music graduate; small-agency trainee", "낼 수는 있어요. 그냥 여기선 안 내는 게 더 좋게 들려서요.", "I can hit it. I just think it sounds better if I don't do it here."], "P04": ["178", "댄스 크루 출신 · 기획사 연습생", "Former dance-crew member and agency trainee", "그 템포가 최선이면, 센터는 왜 자원했어?", "If that's your pace, why did you volunteer for center?"], "P05": ["181", "활동 중단된 소형 그룹의 전 리더", "Former leader of an inactive small-agency idol group", "긴장해도 돼. 시작할 때 나만 봐. 박자는 내가 줄게.", "You can be nervous. Just look my way when we start. I'll give you the beat."], "P06": ["174", "개인 연습생 · 온라인 싱어송라이터", "Independent trainee and online songwriter", "잠깐, 두 마디. 여길 비워두면 다음 목소리가 더 잘 들려.", "Wait, two bars. Leave this empty and the next voice comes through better."], "P07": ["", "예능감 좋은 소형 기획사 연습생", "Small-agency trainee with a talent for variety content", "분량은 내가 뽑아올게. 근데 이번 후렴은 나도 오디션 볼래.", "I'll get us the screen time. But I want to audition for this chorus too."], "P08": ["180", "데뷔가 여러 번 무산된 7년 차 연습생", "Seventh-year trainee after several canceled debut plans", "쉬어도 돼. 한 번만 제대로 하고. 저번에도 같은 데서 틀렸잖아.", "We can rest. Just get it right once first. We missed the same bit last time."], "P09": ["", "연습 1년 차 신예", "Rookie with approximately one year of training", "이거 그냥 이렇게 하면 되는데. 아, 잠깐. 천천히 보여줄게.", "You can just do this. Oh, wait. Let me show you slowly."], "P10": ["183", "행사 무대 경험 많은 소형 기획사 연습생", "Small-agency trainee with extensive live-event experience", "뭘 하고 싶은지 알아. 정하기 전에 내 말도 들어줄래?", "I know what you want to do. Can you hear me out before we decide?"], "P11": ["178", "직장인 · 주말 밴드 보컬 출신", "Former office worker and weekend-band vocalist", "노래는 되는데 다리가 자꾸 딴 노래를 해요. 다시 해볼게요.", "The singing works. My legs keep performing another song. I'll try again."], "P12": ["185", "한국계 미국인 래퍼 · 신생 기획사 연습생", "Korean-Mexican American rapper; trainee at a new agency", "형인 건 아는데, 정하기 전에 둘 다 불러보면 안 돼?", "I know you're older, but can't we both try the part before deciding?"], "P13": ["180", "4년 차 연습생 · 아역 광고 배우 출신", "Fourth-year trainee; former child commercial actor", "후렴 원하는 거 이해해. 투표 전에 녹음본 둘 다 비교해 보자.", "I understand why you want the chorus. Can we compare both recordings before we vote?"], "P14": ["179", "댄스 중심 기획사 3년 차 연습생", "Third-year trainee at a dance-focused agency", "내 거 한 번 돌고 나서 도와줄게. 이 파트 먼저 해보고 싶어.", "I can help after my own run. I want to try this part first."], "P15": ["182", "확정된 데뷔조에서 밀려난 5년 차 연습생", "Fifth-year trainee; displaced member of a confirmed debut lineup", "화음은 내가 맡을게. 그래도 이번엔 오프닝 오디션도 보고 싶어.", "I can take the harmony. But this time, I want to audition for the opening too."], "P16": ["177", "성악 전공 출신 2년 차 연습생", "Second-year trainee; former conservatory classical-voice student", "밝은 버전도 될 수는 있어. 안 되는 이유 말하기 전에 먼저 불러볼게.", "The bright version might work. Let me try it before I tell you why it won't."], "P17": ["181", "뮤지컬 전공 출신 4년 차 연습생", "Fourth-year trainee; former musical-theater student", "카메라가 가까운 건 알아. 감정이 어디서부터 과해지는지 보여줘.", "I know the camera is closer. Show me where the feeling becomes too large."], "P18": ["175", "액세서리 숍 직원 출신 3년 차 연습생", "Third-year trainee; former fashion-accessory shop assistant", "재킷이 문제가 아니야. 핀 두 개만 주고 동작 다시 해봐.", "The jacket isn't the problem. Give me two pins, then try the movement again."], "P19": ["186", "개인 연습생 · 밴드 보컬 · 꽃집 직원 출신", "Independent trainee; former live-band vocalist and part-time florist", "맞아. '아마 될 거야'는 계획 세울 수 있는 약속이 아니었지. 제대로 대답할게.", "You're right. Saying I could probably do it wasn't a promise you could plan around. Let me answer properly."], "P20": ["187", "수영 선수 출신 2년 차 연습생", "Second-year trainee; former university swimmer", "나는 한 시간 더 할 수 있어. 그렇다고 다 같이 할 필요는 없지. 팀에 진짜 필요한 게 뭐야?", "I can do another hour. That doesn't mean everybody has to. Tell me what the team actually needs."], "P21": ["180", "태권도 선수 출신 3년 차 연습생", "Third-year trainee; former competitive taekwondo athlete", "덤블링은 나중에. 착지부터 지루할 만큼 완벽하게 할게.", "The flip can wait. Let me make the landing boring first."], "P22": ["177", "피겨 청소년 국가대표 출신 3년 차 연습생", "Third-year trainee; former junior national-team figure skater", "엔딩은 내가 버틸 수 있어. 다른 사람들 준비에 몇 초 필요한지만 말해줘.", "I can hold the ending. Just tell me how long the others need me to wait."], "P23": ["", "청소년 합창단 솔리스트 출신 2년 차 연습생", "Second-year trainee; former youth choir soloist", "이번엔 낮은 화음을 하고 싶어요. 다들 고음을 기대하는 건 알지만요.", "I want the lower harmony this time. I know the high part is what people expect."], "P24": ["", "숏폼 댄스 크리에이터 출신 · 연습 1년 반", "Eighteen-month trainee; former short-video dance creator", "잠깐, 이거 찍을까? 아니면 우리끼리만 볼까?", "Wait, do you want this filmed, or should we just keep it here?"], "P25": ["", "일본 지하돌 · 애니송 커버 가수 출신", "Trainee at a mid-size agency; former Japanese underground idol and anime-song cover singer", "귀엽다고 봐주지 마세요. 귀여운 건 이미 알아요. 뭐가 약했는지 말해줘요.", "Please don't go easy on me because I'm cute. I already know I'm cute. Tell me what was weak."], "P26": ["186", "단역 드라마 배우 출신 2년 차 연습생", "Second-year trainee; former small-role television actor", "정말 하고 싶어. 그걸 증명할 걸 일정에 넣어야 한다는 말도 맞고.", "I do want this. You're right that I need to put something on the schedule that proves it."], "P27": ["184", "미대 일러스트 전공 출신 2년 차 연습생", "Second-year trainee; former art-school illustration student", "단순하게 바꿀 수 있어. 어느 부분이 무대를 막는지 말해주면 거기서부터 할게.", "I can simplify it. Tell me which part makes the stage unworkable, and I'll start there."], "P28": ["185", "호텔 프런트 직원 출신 3년 차 연습생", "Third-year trainee; former hotel guest-services employee", "멘트는 제가 할 수 있어요. 그래도 첫 벌스를 부르고 싶다고, 처음부터 말했어야 했네요.", "I can handle the announcement. But I'd rather sing the first verse, and I should have said that directly."], "P29": ["190", "배우 권유를 거절한 3년 차 아이돌 연습생", "Third-year idol trainee; repeatedly encouraged to pursue acting, but committed to performing as an idol", "방금 테이크 별로였던 거 알아요. 한 번만 더 해도 돼요?", "I know that take wasn't good. Can I try it once more?"], "P30": ["172", "개인 연습생 · 지역 극단 배우 · 보컬 코치 보조", "Independent trainee; community-theater performer and vocal coach assistant", "잘생겨도 연습은 했을 수 있지. 연설하기 전에 테이크부터 끝까지 들어야겠다.", "He can be handsome and still have practiced. I should probably hear the whole take before making a speech."]};
 /* 범퍼샷 이미지: assets/bump/ 폴더. 캐릭터별로 여러 장이면 배열에 추가 (첫 장이 메인) */
-const BUMP={};
+const BUMP={"P01": ["P01_1.webp"], "P02": ["P02_1.webp"], "P03": ["P03_1.webp"], "P04": ["P04_1.webp"], "P05": ["P05_1.webp"], "P06": ["P06_1.webp"], "P07": ["P07_1.webp"], "P08": ["P08_1.webp"], "P09": ["P09_1.webp"], "P10": ["P10_1.webp"], "P11": ["P11_1.webp"], "P12": ["P12_1.webp"], "P13": ["P13_1.webp"], "P14": ["P14_1.webp"], "P15": ["P15_1.webp"], "P16": ["P16_1.webp"], "P17": ["P17_1.webp"], "P18": ["P18_1.webp"], "P19": ["P19_1.webp"], "P20": ["P20_1.webp"], "P21": ["P21_1.webp"], "P22": ["P22_1.webp"], "P23": ["P23_1.webp"], "P24": ["P24_1.webp"], "P25": ["P25_1.webp"], "P26": ["P26_1.webp"], "P27": ["P27_1.webp"], "P28": ["P28_1.webp"], "P29": ["P29_1.webp"], "P30": ["P30_1.webp"]};
 const BM=document.createElement("div");BM.className="bm";BM.id="bm";BM.setAttribute("role","dialog");document.body.append(BM);
 let bmI=0;
 const splitName=c=>{const n=c.en.split("·")[0].trim().split(/\s+/);return [n[0].toUpperCase(),n.slice(1).join(" ").toUpperCase()]};
@@ -544,6 +615,8 @@ function bmRender(i,anim=true){
   const [fam,giv]=splitName(c);const imgs=(BUMP[c.id]&&BUMP[c.id].length?BUMP[c.id].map(f=>"assets/bump/"+f):["assets/dex/"+c.id+".webp"]);
   const dark=C.t==="#13205a";BM.classList.toggle("dk",dark);
   BM.style.setProperty("--c",C.c);BM.style.setProperty("--t",C.t);BM.style.setProperty("--sh",C.c==="#13205a"?"#ffb8d2":"#13205a");
+  if(BUMP[c.id]&&BUMP[c.id].length)return snlRender(c,C,P,en,E,fam,giv,imgs,anim);
+  BM.classList.remove("snl");
   const row=Array(6).fill(`${giv} ${fam} ✦ `).join("");
   const tick=Array(8).fill(`${c.id} <i>✦</i> ${c.en.toUpperCase()} <i>✦</i> ${c.ko} <i>✦</i> ${C.en} <i>✦</i> NEXT STAGE SEASON 1 <i>✦</i> `).join("");
   BM.innerHTML=`<div class="bst">
@@ -572,6 +645,39 @@ function bmRender(i,anim=true){
   BM.querySelector('[data-a="x"]').onclick=closeC;
   BM.querySelectorAll(".thumbs button").forEach(b=>b.onclick=()=>{BM.querySelector(".fr img").src=imgs[+b.dataset.k];BM.querySelectorAll(".thumbs button").forEach(x=>x.classList.toggle("on",x===b))});
   BM.querySelector(".bst").scrollTop=0;
+  if(anim){BM.classList.remove("go");void BM.offsetWidth;BM.classList.add("go")}
+  imgs.slice(1).forEach(s=>{const im=new Image();im.src=s});
+}
+let snlCard=innerWidth>820;
+function snlRender(c,C,P,en,E,fam,giv,imgs,anim){
+  BM.classList.add("snl");BM.classList.toggle("cardoff",!snlCard);
+  const tick=Array(8).fill(`STARRING <i>✦</i> ${c.en.toUpperCase()} <i>✦</i> ${c.ko} <i>✦</i> ${C.en} <i>✦</i> NEXT STAGE · LIVE <i>✦</i> `).join("");
+  BM.innerHTML=`<div class="bst"><div class="stage">
+   <div class="ph"><img src="${imgs[0]}" alt="${nm(c)}"></div><div class="vig"></div><div class="ht"></div><div class="grain"></div>
+   <div class="ghost">${giv}</div>
+   <div class="lb t"></div><div class="lb b"></div>
+   <div class="logo"><b>NEXT STAGE</b><span>SEASON 1</span><i>LIVE</i></div>
+   <div class="ttl"><small>${en?"STARRING":"STARRING · 출연"}</small>
+     <h2><span class="w"><span>${fam}</span></span><span class="w"><span>${giv}</span></span><span class="dup">${fam}<br>${giv}</span></h2>
+     <div class="sub"><em>${c.id} · ${C.en}</em><span>${c.ko}${c.age?" · "+c.age:""}</span></div></div>
+   </div>
+   ${imgs.length>1?`<div class="thumbs">${imgs.map((s,k)=>`<button data-k="${k}" class="${k?"":"on"}" style="background-image:url('${s}')" aria-label="${k+1}"></button>`).join("")}</div>`:""}
+   <aside class="cd"><div class="hd"><span>PROFILE · <b>${c.id}</b></span><span>${String(bmI+1).padStart(2,"0")} / ${CHARS.length}</span></div><div class="bd">
+     <span class="cat">${en?CAT_EN[c.cat]:C.ko}</span>
+     <h3>${en?c.en:c.ko}</h3><div class="en">${en?c.ko:c.en.toUpperCase()}</div>
+     <dl><dt>AGE</dt><dd>${c.age}</dd>${P[0]?`<dt>HEIGHT</dt><dd>${P[0]} cm</dd>`:""}<dt>${en?"BACKGROUND":"이력"}</dt><dd>${en?P[2]||"":P[1]||""}</dd></dl>
+     <p class="ds">${en?E[0]:c.desc}</p>
+     ${P[3]?`<div class="q">${en?P[4]:P[3]}</div>`:""}
+     <div class="tg">${(en?E[1]:c.tags).map(t=>`<span>${t}</span>`).join("")}</div>
+   </div></aside>
+   <div class="tk"><div>${tick}</div></div>
+   <div class="ui"><button class="pc" data-a="c">${en?"PROFILE":"프로필"}</button><button data-a="p" aria-label="prev">‹</button><span>${c.id}</span><button data-a="n" aria-label="next">›</button><button data-a="x" aria-label="${en?"Close":"닫기"}">×</button></div>
+  </div>`;
+  const q=s=>BM.querySelector(s);
+  q('[data-a="p"]').onclick=()=>bmRender(bmI-1);q('[data-a="n"]').onclick=()=>bmRender(bmI+1);q('[data-a="x"]').onclick=closeC;
+  q('[data-a="c"]').onclick=()=>{snlCard=!snlCard;BM.classList.toggle("cardoff",!snlCard)};
+  BM.querySelectorAll(".thumbs button").forEach(b=>b.onclick=()=>{const im=q(".ph img");im.style.opacity=0;setTimeout(()=>{im.src=imgs[+b.dataset.k];im.style.opacity=1},200);BM.querySelectorAll(".thumbs button").forEach(x=>x.classList.toggle("on",x===b))});
+  q(".bst").scrollTop=0;
   if(anim){BM.classList.remove("go");void BM.offsetWidth;BM.classList.add("go")}
   imgs.slice(1).forEach(s=>{const im=new Image();im.src=s});
 }
