@@ -195,6 +195,103 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
 .fade{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
 .fade.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+/* ===== bumper profile ===== */
+.bm{position:fixed;inset:0;z-index:95;display:none;background:var(--c);color:var(--t);overflow:hidden;--ink2:#13205a;--sh:#13205a}
+.bm.on{display:block}
+.bm .bst{position:absolute;inset:0;overflow:hidden}
+.bm .dots{position:absolute;inset:-10%;background:radial-gradient(circle,rgba(255,255,255,.22) 30%,transparent 33%) 0 0/14px 14px;
+  -webkit-mask:linear-gradient(115deg,#000 0%,transparent 45%,transparent 60%,#000 100%);mask:linear-gradient(115deg,#000 0%,transparent 45%,transparent 60%,#000 100%)}
+.bm.dk .dots{background-image:radial-gradient(circle,rgba(19,32,90,.18) 30%,transparent 33%)}
+.bm .ck{position:absolute;left:0;right:0;height:26px;z-index:6;background:conic-gradient(#fff 25%,var(--ink2) 0 50%,#fff 0 75%,var(--ink2) 0) 0 0/26px 26px}
+.bm .ck.t{top:0}.bm .ck.b{bottom:0}
+/* giant outlined back rows */
+.bm .back{position:absolute;left:-10%;right:-10%;top:12%;bottom:6%;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-7deg);z-index:1;pointer-events:none}
+.bm .row{white-space:nowrap;font:italic 900 clamp(80px,15vw,230px)/.82 Archivo,sans-serif;font-stretch:125%;color:transparent;-webkit-text-stroke:2px var(--t);opacity:.3;animation:bmRun 38s linear infinite}
+.bm .row:nth-child(2){animation-direction:reverse;animation-duration:46s;opacity:.18;-webkit-text-stroke-width:1.5px}
+.bm .row:nth-child(3){animation-duration:52s;opacity:.12}
+@keyframes bmRun{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* halftone number */
+.bm .no{position:absolute;z-index:2;left:33%;bottom:9vh;font:italic 900 clamp(150px,28vw,420px)/.8 Archivo,sans-serif;font-stretch:125%;letter-spacing:-.04em;
+  color:transparent;background:radial-gradient(circle,var(--t) 38%,transparent 41%) 0 0/9px 9px;-webkit-background-clip:text;background-clip:text;opacity:.55}
+/* frame */
+.bm .fr{position:absolute;z-index:3;right:7%;top:9%;width:min(44vw,640px);height:80vh;clip-path:polygon(9% 0,100% 0,91% 100%,0 100%);background:var(--ink2);
+  box-shadow:0 0 0 0 transparent}
+.bm .frs{position:absolute;z-index:2;right:calc(7% - 16px);top:calc(9% + 16px);width:min(44vw,640px);height:80vh;clip-path:polygon(9% 0,100% 0,91% 100%,0 100%);
+  background:radial-gradient(circle,var(--sh) 34%,transparent 37%) 0 0/7px 7px}
+.bm .fr img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;transition:opacity .35s}
+.bm .fr .sc{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.07) 0 1px,transparent 1px 3px);mix-blend-mode:multiply;pointer-events:none}
+.bm .fr .tag{position:absolute;right:11%;top:14px;font:700 11px "Space Mono",monospace;letter-spacing:.2em;background:var(--red);color:#fff;padding:3px 9px}
+.bm .fr .rec{position:absolute;left:12%;bottom:16px;font:700 11px "Space Mono",monospace;letter-spacing:.2em;color:#fff;display:flex;align-items:center;gap:6px;text-shadow:0 1px 4px #000}
+.bm .fr .rec::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red);animation:bmBlink 1s steps(2) infinite}
+@keyframes bmBlink{50%{opacity:0}}
+.bm .thumbs{position:absolute;z-index:5;right:calc(7% + 30px);bottom:calc(11vh - 22px);display:flex;gap:8px}
+.bm .thumbs button{width:52px;height:52px;border:3px solid #fff;box-shadow:3px 3px 0 var(--ink2);background:center/cover;opacity:.6;transform:rotate(-4deg)}
+.bm .thumbs button.on{opacity:1;transform:rotate(-4deg) translateY(-4px)}
+/* front name */
+.bm .fam{position:absolute;z-index:4;left:calc(100% - 7% - min(44vw,640px) - 70px);top:12%;writing-mode:vertical-rl;font:italic 900 clamp(40px,6vw,92px)/1 Archivo,sans-serif;font-stretch:125%;
+  color:transparent;background:radial-gradient(circle,var(--t) 40%,transparent 43%) 0 0/6px 6px;-webkit-background-clip:text;background-clip:text;letter-spacing:.02em}
+.bm .giv{position:absolute;z-index:5;right:3%;bottom:7vh;font:italic 900 clamp(64px,12vw,190px)/.8 Archivo,sans-serif;font-stretch:125%;color:#fff;letter-spacing:-.02em;
+  -webkit-text-stroke:3px var(--ink2);paint-order:stroke fill;text-shadow:8px 8px 0 var(--sh);mix-blend-mode:normal}
+.bm .giv span{display:block;position:absolute;inset:0;color:transparent;-webkit-text-stroke:0;text-shadow:none;
+  background:radial-gradient(circle,var(--c) 36%,transparent 39%) 0 0/7px 7px;-webkit-background-clip:text;background-clip:text;-webkit-mask:linear-gradient(0deg,#000,transparent 70%);mask:linear-gradient(0deg,#000,transparent 70%)}
+.bm .kor{position:absolute;z-index:5;right:4%;bottom:calc(7vh + clamp(64px,12vw,190px)*.82);font:900 clamp(20px,2.4vw,34px)/1 "Noto Sans KR";color:var(--ink2);background:#fff;padding:4px 12px;transform:rotate(-4deg);box-shadow:4px 4px 0 var(--sh)}
+/* card */
+.bm .cd{position:absolute;z-index:6;left:5%;top:13%;width:min(36vw,470px);max-height:76vh;overflow:auto;background:#fff;color:var(--ink2);border:3px solid var(--ink2);box-shadow:10px 10px 0 var(--sh);scrollbar-width:thin}
+.bm .cd .hd{display:flex;justify-content:space-between;align-items:center;background:var(--ink2);color:#fff;padding:7px 12px;font:700 11px "Space Mono",monospace;letter-spacing:.14em}
+.bm .cd .hd b{color:var(--pink)}
+.bm .cd .bd{padding:16px 18px 18px}
+.bm .cd .cat{display:inline-block;font:700 11px "Space Mono",monospace;letter-spacing:.1em;padding:2px 9px;border:2px solid var(--ink2);background:var(--c);color:var(--t)}
+.bm .cd h3{font:900 34px/1.15 "Noto Sans KR";margin-top:8px}
+.bm .cd .en{font:700 12px "Space Mono",monospace;letter-spacing:.08em;color:var(--mute)}
+.bm .cd dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:12px 0;font-size:13px;border-top:2px solid var(--ink2);border-bottom:2px solid var(--ink2);padding:9px 0}
+.bm .cd dt{font:700 11px "Space Mono",monospace;letter-spacing:.12em;color:var(--blue2);padding-top:2px}
+.bm .cd dd{font-weight:700}
+.bm .cd .ds{font-size:14.5px}
+.bm .cd .q{position:relative;margin:16px 0 4px;padding:12px 14px;background:var(--c);color:var(--t);border:2px solid var(--ink2);font-weight:800;font-size:14px;line-height:1.55}
+.bm .cd .q::before{content:"“";position:absolute;left:-8px;top:-22px;font:italic 900 54px/1 Archivo;color:var(--ink2)}
+.bm .cd .q::after{content:"";position:absolute;left:22px;bottom:-12px;border:10px solid transparent;border-top-color:var(--ink2);border-bottom:0}
+.bm .cd .tg{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.bm .cd .tg span{padding:2px 10px;border:2px solid var(--ink2);border-radius:20px;font-size:12px;font-weight:800;background:#f3f7ff}
+/* ticker */
+.bm .tk{position:absolute;z-index:6;left:0;right:0;bottom:26px;height:34px;background:var(--ink2);color:#fff;overflow:hidden;display:flex;align-items:center}
+.bm .tk div{white-space:nowrap;font:700 13px "Space Mono",monospace;letter-spacing:.24em;animation:bmRun 30s linear infinite}
+.bm .tk i{color:var(--pink);font-style:normal;margin:0 14px}
+/* ui */
+.bm .ui{position:absolute;z-index:8;top:36px;right:18px;display:flex;gap:8px;align-items:center}
+.bm .ui button{width:42px;height:42px;border-radius:50%;background:var(--ink2);color:#fff;font-weight:900;font-size:18px;border:2px solid #fff}
+.bm .ui span{font:700 12px "Space Mono",monospace;letter-spacing:.14em;background:#fff;color:var(--ink2);padding:4px 10px;border:2px solid var(--ink2)}
+/* entrance */
+.bm.go .fr,.bm.go .frs{animation:bmWipe .7s cubic-bezier(.2,.8,.2,1) both}
+.bm.go .frs{animation-delay:.08s}
+.bm.go .giv{animation:bmSlam .6s .25s cubic-bezier(.2,.9,.3,1.3) both}
+.bm.go .kor{animation:bmPop .4s .5s both}
+.bm.go .fam{animation:bmUp .7s .15s both}
+.bm.go .no{animation:bmPop .6s .1s both}
+.bm.go .cd{animation:bmLeft .6s .1s cubic-bezier(.2,.8,.2,1) both}
+.bm.go .back{animation:bmFade .8s both}
+@keyframes bmWipe{from{clip-path:polygon(100% 0,100% 0,91% 100%,91% 100%)}}
+@keyframes bmSlam{from{transform:translateX(30%) skewX(-12deg);opacity:0}}
+@keyframes bmPop{from{transform:scale(.6) rotate(-10deg);opacity:0}}
+@keyframes bmUp{from{transform:translateY(40px);opacity:0}}
+@keyframes bmLeft{from{transform:translateX(-40px);opacity:0}}
+@keyframes bmFade{from{opacity:0}}
+/* mobile */
+@media(max-width:820px){
+  .bm .bst{overflow-y:auto;overflow-x:hidden}
+  .bm .back{top:4%;bottom:auto;height:62vh}
+  .bm .no{top:40px;right:0}
+  .bm .fr,.bm .frs{position:absolute;top:60px;right:auto;left:8%;width:84%;height:58vh}
+  .bm .frs{left:calc(8% + 10px);top:70px}
+  .bm .fam{left:2%;top:70px;font-size:40px}
+  .bm .giv{bottom:auto;top:calc(60px + 58vh - 64px);right:4%;font-size:clamp(54px,17vw,100px)}
+  .bm .kor{bottom:auto;top:calc(60px + 58vh - 64px - 44px);font-size:20px}
+  .bm .thumbs{right:auto;left:12%;bottom:auto;top:76px}
+  .bm .cd{position:relative;left:auto;top:auto;width:auto;max-height:none;overflow:visible;margin:calc(60px + 58vh + 70px) 16px 90px}
+  .bm .tk{position:fixed;bottom:26px}
+  .bm .ck.b{position:fixed}
+  .bm .ui{position:fixed;top:34px;right:10px}
+}
+@media(prefers-reduced-motion:reduce){.bm *{animation:none!important}}
 </style>
 </head>
 <body class="locked">
@@ -405,7 +502,7 @@ function applyLang(){document.documentElement.lang=LANG;
   $("#langBtn").textContent=LANG==="en"?"KO":"EN";
   document.querySelectorAll(".glang button").forEach(b=>b.classList.toggle("on",b.dataset.l===LANG));
   try{localStorage.setItem("ns_lang",LANG)}catch(e){}
-  renderRoad();renderFilters();renderCast();renderStaff();filt(curF)}
+  renderRoad();renderFilters();renderCast();renderStaff();filt(curF);if(typeof BM!=="undefined"&&BM.classList.contains("on"))bmRender(bmI,false)}
 function setLang(l){LANG=l;applyLang()}
 $("#langBtn").onclick=()=>setLang(LANG==="en"?"ko":"en");
 document.querySelectorAll(".glang button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
@@ -429,18 +526,61 @@ function filt(k){curF=k;document.querySelectorAll(".fl").forEach(b=>b.classList.
   document.querySelectorAll(".cc").forEach(c=>c.style.display=(k==="all"||c.dataset.cat===k)?"":"none");
   const bn=$("#banner");if(k==="all"){bn.style.display="none";return}
   const C=CATS[k];bn.style.display="";bn.style.background=C.c;$("#bimg").src="assets/banner/"+C.b;$("#bt").textContent=C.en;$("#bt").style.color=C.t;$("#bs").textContent=(LANG==="en"?CAT_EN[k]:C.ko)+" · "+CHARS.filter(x=>x.cat===k).map(nm).join(" · ");$("#bs").style.color=C.t}
-function openC(id){const c=CHARS.find(x=>x.id===id),C=CATS[c.cat];const m=$("#cmb");m.style.setProperty("--c",C.c);m.style.setProperty("--t",C.t);
-  const en=LANG==="en",E=CH_EN[c.id];
-  m.innerHTML=`<button class="mclose" aria-label="${en?"Close":"닫기"}">×</button><div class="mgrid"><div class="ph"><img src="assets/dex/${c.id}.webp" alt="${nm(c)}"></div><div class="info"><span class="cat">${c.id} · ${C.en}</span><h3>${en?c.en:c.ko}</h3><div class="en">${en?c.ko+" · AGE "+c.age:c.en.toUpperCase()+" · "+c.age}</div><p class="desc">${en?E[0]:c.desc}</p><div class="tags">${(en?E[1]:c.tags).map(t=>`<span>${t}</span>`).join("")}</div></div></div>`;
-  m.querySelector(".mclose").onclick=closeC;
-  $("#cm").classList.add("on");document.body.classList.add("locked")}
-function closeC(){$("#cm").classList.remove("on");document.body.classList.remove("locked")}
 $("#cm").onclick=e=>{if(e.target.id==="cm")closeC()};
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("#lb").classList.contains("on"))$("#lb").click();else closeC()}});
 
 /* staff */
 const STAFF_ROMA={M01:"Kang Jaemun",M02:"Oh Serin",M03:"Ma Jinhyeok",M04:"Heo Seungwon",S01:"Min Jeongwoo",S02:"Bae Sujin",S03:"Im Doyoon",H01:"Yoo Seonghwan",H02:"Chae Seoryeong"};
 function renderStaff(){$("#staff").innerHTML="";STAFF.forEach(([i,n,r,d])=>{if(LANG==="en"){n=STAFF_ROMA[i];[r,d]=STAFF_EN[i]}$("#staff").append(el("div",{},`<b>${i}</b><strong>${n}</strong> — ${r}<p>${d}</p>`))})}
+/* ===== bumper profile ===== */
+const PROF={"P01": ["184", "6년 차 연습생 · 무산된 데뷔조 주장 출신", "Sixth-year trainee; former captain of a canceled agency debut team", "동선부터 맞추자. 파트 얘기는 그다음에 해도 돼.", "Let's fix the blocking first. We can talk about parts afterward."], "P02": ["188", "모델 출신 · 아이돌 연습 8개월 차", "Former model; eight months of idol training", "얼굴은 출근했는데 몸이 아직 결근이에요. 한 번만 더 보여줄 수 있어요?", "My face showed up. My body is still absent. Can you show me once more?"], "P03": ["176", "실용음악 전공 · 소형 기획사 연습생", "Contemporary music graduate; small-agency trainee", "낼 수는 있어요. 그냥 여기선 안 내는 게 더 좋게 들려서요.", "I can hit it. I just think it sounds better if I don't do it here."], "P04": ["178", "댄스 크루 출신 · 기획사 연습생", "Former dance-crew member and agency trainee", "그 템포가 최선이면, 센터는 왜 자원했어?", "If that's your pace, why did you volunteer for center?"], "P05": ["181", "활동 중단된 소형 그룹의 전 리더", "Former leader of an inactive small-agency idol group", "긴장해도 돼. 시작할 때 나만 봐. 박자는 내가 줄게.", "You can be nervous. Just look my way when we start. I'll give you the beat."], "P06": ["174", "개인 연습생 · 온라인 싱어송라이터", "Independent trainee and online songwriter", "잠깐, 두 마디. 여길 비워두면 다음 목소리가 더 잘 들려.", "Wait, two bars. Leave this empty and the next voice comes through better."], "P07": ["", "예능감 좋은 소형 기획사 연습생", "Small-agency trainee with a talent for variety content", "분량은 내가 뽑아올게. 근데 이번 후렴은 나도 오디션 볼래.", "I'll get us the screen time. But I want to audition for this chorus too."], "P08": ["180", "데뷔가 여러 번 무산된 7년 차 연습생", "Seventh-year trainee after several canceled debut plans", "쉬어도 돼. 한 번만 제대로 하고. 저번에도 같은 데서 틀렸잖아.", "We can rest. Just get it right once first. We missed the same bit last time."], "P09": ["", "연습 1년 차 신예", "Rookie with approximately one year of training", "이거 그냥 이렇게 하면 되는데. 아, 잠깐. 천천히 보여줄게.", "You can just do this. Oh, wait. Let me show you slowly."], "P10": ["183", "행사 무대 경험 많은 소형 기획사 연습생", "Small-agency trainee with extensive live-event experience", "뭘 하고 싶은지 알아. 정하기 전에 내 말도 들어줄래?", "I know what you want to do. Can you hear me out before we decide?"], "P11": ["178", "직장인 · 주말 밴드 보컬 출신", "Former office worker and weekend-band vocalist", "노래는 되는데 다리가 자꾸 딴 노래를 해요. 다시 해볼게요.", "The singing works. My legs keep performing another song. I'll try again."], "P12": ["185", "한국계 미국인 래퍼 · 신생 기획사 연습생", "Korean-Mexican American rapper; trainee at a new agency", "형인 건 아는데, 정하기 전에 둘 다 불러보면 안 돼?", "I know you're older, but can't we both try the part before deciding?"], "P13": ["180", "4년 차 연습생 · 아역 광고 배우 출신", "Fourth-year trainee; former child commercial actor", "후렴 원하는 거 이해해. 투표 전에 녹음본 둘 다 비교해 보자.", "I understand why you want the chorus. Can we compare both recordings before we vote?"], "P14": ["179", "댄스 중심 기획사 3년 차 연습생", "Third-year trainee at a dance-focused agency", "내 거 한 번 돌고 나서 도와줄게. 이 파트 먼저 해보고 싶어.", "I can help after my own run. I want to try this part first."], "P15": ["182", "확정된 데뷔조에서 밀려난 5년 차 연습생", "Fifth-year trainee; displaced member of a confirmed debut lineup", "화음은 내가 맡을게. 그래도 이번엔 오프닝 오디션도 보고 싶어.", "I can take the harmony. But this time, I want to audition for the opening too."], "P16": ["177", "성악 전공 출신 2년 차 연습생", "Second-year trainee; former conservatory classical-voice student", "밝은 버전도 될 수는 있어. 안 되는 이유 말하기 전에 먼저 불러볼게.", "The bright version might work. Let me try it before I tell you why it won't."], "P17": ["181", "뮤지컬 전공 출신 4년 차 연습생", "Fourth-year trainee; former musical-theater student", "카메라가 가까운 건 알아. 감정이 어디서부터 과해지는지 보여줘.", "I know the camera is closer. Show me where the feeling becomes too large."], "P18": ["175", "액세서리 숍 직원 출신 3년 차 연습생", "Third-year trainee; former fashion-accessory shop assistant", "재킷이 문제가 아니야. 핀 두 개만 주고 동작 다시 해봐.", "The jacket isn't the problem. Give me two pins, then try the movement again."], "P19": ["186", "개인 연습생 · 밴드 보컬 · 꽃집 직원 출신", "Independent trainee; former live-band vocalist and part-time florist", "맞아. '아마 될 거야'는 계획 세울 수 있는 약속이 아니었지. 제대로 대답할게.", "You're right. Saying I could probably do it wasn't a promise you could plan around. Let me answer properly."], "P20": ["187", "수영 선수 출신 2년 차 연습생", "Second-year trainee; former university swimmer", "나는 한 시간 더 할 수 있어. 그렇다고 다 같이 할 필요는 없지. 팀에 진짜 필요한 게 뭐야?", "I can do another hour. That doesn't mean everybody has to. Tell me what the team actually needs."], "P21": ["180", "태권도 선수 출신 3년 차 연습생", "Third-year trainee; former competitive taekwondo athlete", "덤블링은 나중에. 착지부터 지루할 만큼 완벽하게 할게.", "The flip can wait. Let me make the landing boring first."], "P22": ["177", "피겨 청소년 국가대표 출신 3년 차 연습생", "Third-year trainee; former junior national-team figure skater", "엔딩은 내가 버틸 수 있어. 다른 사람들 준비에 몇 초 필요한지만 말해줘.", "I can hold the ending. Just tell me how long the others need me to wait."], "P23": ["", "청소년 합창단 솔리스트 출신 2년 차 연습생", "Second-year trainee; former youth choir soloist", "이번엔 낮은 화음을 하고 싶어요. 다들 고음을 기대하는 건 알지만요.", "I want the lower harmony this time. I know the high part is what people expect."], "P24": ["", "숏폼 댄스 크리에이터 출신 · 연습 1년 반", "Eighteen-month trainee; former short-video dance creator", "잠깐, 이거 찍을까? 아니면 우리끼리만 볼까?", "Wait, do you want this filmed, or should we just keep it here?"], "P25": ["", "일본 지하돌 · 애니송 커버 가수 출신", "Trainee at a mid-size agency; former Japanese underground idol and anime-song cover singer", "귀엽다고 봐주지 마세요. 귀여운 건 이미 알아요. 뭐가 약했는지 말해줘요.", "Please don't go easy on me because I'm cute. I already know I'm cute. Tell me what was weak."], "P26": ["186", "단역 드라마 배우 출신 2년 차 연습생", "Second-year trainee; former small-role television actor", "정말 하고 싶어. 그걸 증명할 걸 일정에 넣어야 한다는 말도 맞고.", "I do want this. You're right that I need to put something on the schedule that proves it."], "P27": ["184", "미대 일러스트 전공 출신 2년 차 연습생", "Second-year trainee; former art-school illustration student", "단순하게 바꿀 수 있어. 어느 부분이 무대를 막는지 말해주면 거기서부터 할게.", "I can simplify it. Tell me which part makes the stage unworkable, and I'll start there."], "P28": ["185", "호텔 프런트 직원 출신 3년 차 연습생", "Third-year trainee; former hotel guest-services employee", "멘트는 제가 할 수 있어요. 그래도 첫 벌스를 부르고 싶다고, 처음부터 말했어야 했네요.", "I can handle the announcement. But I'd rather sing the first verse, and I should have said that directly."], "P29": ["190", "배우 권유를 거절한 3년 차 아이돌 연습생", "Third-year idol trainee; repeatedly encouraged to pursue acting, but committed to performing as an idol", "방금 테이크 별로였던 거 알아요. 한 번만 더 해도 돼요?", "I know that take wasn't good. Can I try it once more?"], "P30": ["172", "개인 연습생 · 지역 극단 배우 · 보컬 코치 보조", "Independent trainee; community-theater performer and vocal coach assistant", "잘생겨도 연습은 했을 수 있지. 연설하기 전에 테이크부터 끝까지 들어야겠다.", "He can be handsome and still have practiced. I should probably hear the whole take before making a speech."]};
+/* 범퍼샷 이미지: assets/bump/ 폴더. 캐릭터별로 여러 장이면 배열에 추가 (첫 장이 메인) */
+const BUMP={};
+const BM=document.createElement("div");BM.className="bm";BM.id="bm";BM.setAttribute("role","dialog");document.body.append(BM);
+let bmI=0;
+const splitName=c=>{const n=c.en.split("·")[0].trim().split(/\s+/);return [n[0].toUpperCase(),n.slice(1).join(" ").toUpperCase()]};
+function bmRender(i,anim=true){
+  bmI=(i+CHARS.length)%CHARS.length;const c=CHARS[bmI],C=CATS[c.cat],P=PROF[c.id]||[],en=LANG==="en",E=CH_EN[c.id];
+  const [fam,giv]=splitName(c);const imgs=(BUMP[c.id]&&BUMP[c.id].length?BUMP[c.id].map(f=>"assets/bump/"+f):["assets/dex/"+c.id+".webp"]);
+  const dark=C.t==="#13205a";BM.classList.toggle("dk",dark);
+  BM.style.setProperty("--c",C.c);BM.style.setProperty("--t",C.t);BM.style.setProperty("--sh",C.c==="#13205a"?"#ffb8d2":"#13205a");
+  const row=Array(6).fill(`${giv} ${fam} ✦ `).join("");
+  const tick=Array(8).fill(`${c.id} <i>✦</i> ${c.en.toUpperCase()} <i>✦</i> ${c.ko} <i>✦</i> ${C.en} <i>✦</i> NEXT STAGE SEASON 1 <i>✦</i> `).join("");
+  BM.innerHTML=`<div class="bst">
+   <div class="dots"></div><div class="ck t"></div>
+   <div class="back"><div class="row">${row}</div><div class="row">${row}</div><div class="row">${row}</div></div>
+   <div class="no">${c.id.slice(1)}</div>
+   <div class="frs"></div>
+   <div class="fr"><img src="${imgs[0]}" alt="${nm(c)}"><div class="sc"></div><span class="tag">${c.id} · ${C.en}</span><span class="rec">REC · EP03</span></div>
+   ${imgs.length>1?`<div class="thumbs">${imgs.map((s,k)=>`<button data-k="${k}" class="${k?"":"on"}" style="background-image:url('${s}')" aria-label="${k+1}"></button>`).join("")}</div>`:""}
+   <div class="fam">${fam}</div>
+   <div class="kor">${c.ko}</div>
+   <div class="giv">${giv}<span>${giv}</span></div>
+   <aside class="cd"><div class="hd"><span>PROFILE · <b>${c.id}</b></span><span>${String(bmI+1).padStart(2,"0")} / ${CHARS.length}</span></div><div class="bd">
+     <span class="cat">${en?CAT_EN[c.cat]:C.ko}</span>
+     <h3>${en?c.en:c.ko}</h3><div class="en">${en?c.ko:c.en.toUpperCase()}</div>
+     <dl><dt>AGE</dt><dd>${c.age}</dd>${P[0]?`<dt>HEIGHT</dt><dd>${P[0]} cm</dd>`:""}<dt>${en?"BACKGROUND":"이력"}</dt><dd>${en?P[2]||"":P[1]||""}</dd></dl>
+     <p class="ds">${en?E[0]:c.desc}</p>
+     ${P[3]?`<div class="q">${en?P[4]:P[3]}</div>`:""}
+     <div class="tg">${(en?E[1]:c.tags).map(t=>`<span>${t}</span>`).join("")}</div>
+   </div></aside>
+   <div class="tk"><div>${tick}</div></div><div class="ck b"></div>
+   <div class="ui"><button data-a="p" aria-label="prev">‹</button><span>${c.id}</span><button data-a="n" aria-label="next">›</button><button data-a="x" aria-label="${en?"Close":"닫기"}">×</button></div>
+  </div>`;
+  BM.querySelector('[data-a="p"]').onclick=()=>bmRender(bmI-1);
+  BM.querySelector('[data-a="n"]').onclick=()=>bmRender(bmI+1);
+  BM.querySelector('[data-a="x"]').onclick=closeC;
+  BM.querySelectorAll(".thumbs button").forEach(b=>b.onclick=()=>{BM.querySelector(".fr img").src=imgs[+b.dataset.k];BM.querySelectorAll(".thumbs button").forEach(x=>x.classList.toggle("on",x===b))});
+  BM.querySelector(".bst").scrollTop=0;
+  if(anim){BM.classList.remove("go");void BM.offsetWidth;BM.classList.add("go")}
+  imgs.slice(1).forEach(s=>{const im=new Image();im.src=s});
+}
+function openC(id){bmRender(CHARS.findIndex(x=>x.id===id));BM.classList.add("on");document.body.classList.add("locked")}
+function closeC(){BM.classList.remove("on","go");$("#cm").classList.remove("on");document.body.classList.remove("locked")}
+document.addEventListener("keydown",e=>{if(!BM.classList.contains("on"))return;if(e.key==="ArrowRight")bmRender(bmI+1);if(e.key==="ArrowLeft")bmRender(bmI-1)});
+let bmX=null;BM.addEventListener("touchstart",e=>{bmX=e.touches[0].clientX},{passive:true});
+BM.addEventListener("touchend",e=>{if(bmX===null)return;const d=e.changedTouches[0].clientX-bmX;if(Math.abs(d)>70)bmRender(bmI+(d<0?1:-1));bmX=null},{passive:true});
+
 applyLang();
 
 /* reveal + nav highlight */
