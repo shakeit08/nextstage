@@ -117,17 +117,23 @@ section{padding-top:84px}
 .ft h4{background:var(--blue);color:#fff;font-size:14px;padding:7px 10px;font-weight:900}
 .ft h4 b{font-family:"Space Mono";font-size:11px;color:var(--pink);margin-right:6px}
 .ft p{padding:9px 10px 11px;font-size:13px}
-.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:28px}
-@media(max-width:760px){.shots{grid-template-columns:1fr}}
-.shot .lab{display:inline-block;padding:5px 12px;background:var(--c,var(--blue));color:#fff;font-size:13px;font-weight:900;font-style:italic}
-.shot .frame{border:3px solid var(--navy);background:linear-gradient(180deg,#dde8fb,#f3f7ff);box-shadow:8px 8px 0 -3px #fff,8px 8px 0 0 var(--navy);min-height:180px;display:grid;place-items:center;cursor:zoom-in;overflow:hidden}
-.shot .frame img{width:100%}
-.shots{align-items:start}
-.shot .pop{float:right;margin-top:4px;font-size:12px;font-weight:800;color:var(--navy);text-decoration:none;border-bottom:2px solid currentColor}
-.shot .frame.live{cursor:default;display:block;height:var(--lh,785px)}
-.shot .frame.live iframe{display:block;width:100%;height:100%;border:0}
-@media(max-width:760px){.shot .frame.live{--lh:760px}}
-.shot .frame .ph{font-family:"Space Mono";font-size:11px;color:var(--mute);padding:30px;text-align:center}
+/* try zone */
+.tz{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:start}
+.tz-tabs{display:flex;flex-direction:column;gap:8px}
+.tz-tab{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline;padding:11px 13px;background:#fff;border:3px solid var(--navy);box-shadow:4px 4px 0 var(--c,var(--blue));transition:transform .12s,box-shadow .12s}
+.tz-tab:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--c,var(--blue))}
+.tz-tab b{font-family:"Space Mono";font-size:11px;color:var(--c,var(--blue));grid-row:span 2}
+.tz-tab strong{font-size:15px;font-weight:900;font-style:italic}
+.tz-tab small{font-size:12px;color:var(--mute)}
+.tz-tab.on{background:var(--navy);color:#fff;transform:translate(3px,3px);box-shadow:1px 1px 0 var(--c,var(--blue))}
+.tz-tab.on small{color:#c3cdf0}.tz-tab.on b{color:var(--pink)}
+.tz-screen{border:3px solid var(--navy);background:#0d1430;box-shadow:10px 10px 0 -3px #fff,10px 10px 0 0 var(--navy);min-width:0}
+.tz-top{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;background:var(--navy);color:#c3cdf0;font-family:"Space Mono";font-size:11px;letter-spacing:.06em}
+.tz-top i{width:10px;height:10px;border-radius:50%;background:var(--red)}.tz-top i+i{background:#ffd34d}.tz-top i+i+i{background:var(--lime);margin-right:8px}
+.tz-top span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tz-top a{color:var(--pink);text-decoration:none;font-weight:700}
+.tz-screen iframe{display:block;width:100%;height:760px;border:0;background:#e6ecf6}
+@media(max-width:860px){.tz{grid-template-columns:1fr}.tz-tabs{flex-direction:row;overflow-x:auto;padding:0 6px 8px 0;scrollbar-width:none}.tz-tabs::-webkit-scrollbar{display:none}.tz-tab{flex:none;grid-template-columns:auto auto;padding:9px 12px}.tz-tab small{display:none}.tz-tab b{grid-row:auto}.tz-screen iframe{height:760px}}
 
 /* cast */
 .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
@@ -388,7 +394,7 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
   <div class="in">
     <span class="logo disp">NEXT STAGE</span>
     <div class="links">
-      <a href="#season"><b>01</b><span data-t="n1">시즌</span></a><a href="#role"><b>02</b><span data-t="n2">역할</span></a><a href="#features"><b>03</b><span data-t="n3">기능</span></a><a href="#cast"><b>04</b><span data-t="n4">참가자</span></a><a href="#start"><b>05</b><span data-t="n5">시작</span></a>
+      <a href="#season"><b>01</b><span data-t="n1">시즌</span></a><a href="#role"><b>02</b><span data-t="n2">역할</span></a><a href="#features"><b>03</b><span data-t="n3">기능</span></a><a href="#try"><b>04</b><span data-t="ntz">체험존</span></a><a href="#cast"><b>05</b><span data-t="n4">참가자</span></a><a href="#start"><b>06</b><span data-t="n5">시작</span></a>
     </div>
     <button class="lang" id="langBtn" aria-label="Language">EN</button><div class="snd"><button id="sndBtn" aria-label="배경음악">♪</button><input id="vol" type="range" min="0" max="1" step="0.05" value="0.45" aria-label="음량"></div>
   </div>
@@ -438,16 +444,18 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
       <div class="ft"><h4><b>07</b><span data-t="f7">본문 언어</span></h4><p>한국어 / English</p></div>
       <div class="ft"><h4><b>08</b><span data-t="f8">보조 모델 분리</span></h4><p><span data-t="f8d">상태 기록·이미지·갤러리 따로 처리</span></p></div>
     </div>
-    <div class="shots">
-      <div class="shot fade" style="--c:var(--red)"><span class="lab"><span data-t="s1">01 · 상태창</span></span><div class="frame" data-src="assets/shots/status.png"></div></div>
-      <div class="shot fade"><span class="lab"><span data-t="s2">02 · 순위 발표</span></span><div class="frame" data-src="assets/shots/ranking.png"></div></div>
-      <div class="shot fade" style="--c:var(--navy)"><span class="lab"><span data-t="s4">04 · 전략 카드</span></span><a class="pop" href="demo/cards.html" target="_blank" rel="noopener" data-t="s4o">새 창에서 열기 ↗</a><div class="frame live"><iframe src="demo/cards.html" loading="lazy" title="전략 카드 체험"></iframe></div></div>
-      <div class="shot fade" style="--c:#d9703f"><span class="lab"><span data-t="s5">05 · 마이너 갤러리</span></span><div class="frame" data-src="assets/shots/gallery.png"></div></div>
+  </section>
+
+  <section id="try">
+    <div class="sh fade"><span class="num">04.</span><div class="band"><h2>TRY IT</h2><small>PLAYABLE DEMO</small></div></div>
+    <div class="tz fade">
+      <div class="tz-tabs" role="tablist"><button class="tz-tab on" data-tz="status" style="--c:var(--red)"><b>01</b><strong data-t="tz01">상태창</strong><small data-t="tz01d">연습·휴식으로 수치 변화</small></button><button class="tz-tab" data-tz="reveal" style="--c:var(--blue)"><b>02</b><strong data-t="tz02">순위 발표</strong><small data-t="tz02d">생존 컷까지 한 칸씩</small></button><button class="tz-tab" data-tz="dex" style="--c:#7a5af5"><b>03</b><strong data-t="tz03">참가자 도감</strong><small data-t="tz03d">31인 프로필·등급</small></button><button class="tz-tab" data-tz="cards" style="--c:var(--navy)"><b>04</b><strong data-t="tz04">전략 카드</strong><small data-t="tz04d">덱 편성 → 주사위 판정</small></button><button class="tz-tab" data-tz="gallery" style="--c:#d9703f"><b>05</b><strong data-t="tz05">마이너 갤러리</strong><small data-t="tz05d">글쓰기·댓글·리롤</small></button></div>
+      <div class="tz-screen"><div class="tz-top"><i></i><i></i><i></i><span id="tzurl">NEXT STAGE · STATUS</span><a id="tzpop" href="demo/#status" target="_blank" rel="noopener" data-t="tzpop">새 창 ↗</a></div><iframe id="tzf" src="demo/#status" loading="lazy" title="NEXT STAGE 체험존"></iframe></div>
     </div>
   </section>
 
   <section id="cast">
-    <div class="sh fade"><span class="num">04.</span><div class="band"><h2>CAST</h2><small>30 CONTESTANTS</small></div></div>
+    <div class="sh fade"><span class="num">05.</span><div class="band"><h2>CAST</h2><small>30 CONTESTANTS</small></div></div>
     <div class="filters" id="filters"></div>
     <div class="banner fade" id="banner" style="display:none"><img id="bimg" alt=""><div class="cap"><span class="disp" id="bt"></span><small id="bs"></small></div></div>
     <div class="cast" id="castgrid"></div>
@@ -458,7 +466,7 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
   </section>
 
   <section id="start">
-    <div class="sh fade"><span class="num">05.</span><div class="band"><h2>HOW TO</h2><small>START</small></div></div>
+    <div class="sh fade"><span class="num">06.</span><div class="band"><h2>HOW TO</h2><small>START</small></div></div>
     <div class="steps fade">
       <div class="st"><i>1</i><span data-t="st1">첫 메시지에서 역할·언어·세부 설정 선택</span></div>
       <div class="st"><i>2</i><span data-t="st2">'이 설정으로 시작'을 누르면 입소</span></div>
@@ -522,7 +530,7 @@ pv.addEventListener("ended",()=>{if(want)playB()});
 
 /* ===== i18n ===== */
 const EN={enter:"Enter",mute:"Enter muted",hint:"Background music plays on entry. You can turn it off anytime at the top.",
-n1:"Season",n2:"Role",n3:"Features",n4:"Cast",n5:"Start",chip2:"30 named contestants + generated trainees",
+n1:"Season",n2:"Role",n3:"Features",ntz:"Try it",n4:"Cast",tz01:"Status Window",tz01d:"Train or rest, watch stats move",tz02:"Rank Reveal",tz02d:"One slot at a time to the cut",tz03:"Contestant Dex",tz03d:"31 profiles and grades",tz04:"Strategy Cards",tz04d:"Build a deck → roll dice",tz05:"Minor Gallery",tz05d:"Post, comment, reroll",tzpop:"New tab ↗",n5:"Start",chip2:"30 named contestants + generated trainees",
 lead:"About 100 trainees enter, compete over 12 episodes, and seven debut on the live finale.",entry:"ENTRY",
 q1:"Will you take the stage?",p1:"Join as contestant P31. Train, clear missions, and get ranked.",b1:"“……There was an extra contestant?”",
 q2:"Will you build the stage?",p2:"Join the production team. Teach contestants, design stages, and judge them.",b2:"“Who would you like to see first?”",
@@ -532,7 +540,7 @@ f1:"Status Window",f1d:"Stats & popularity, changes shown as ▲▼",f2:"Votes �
 f3:"Contestant Index",f3d:"30 ID photos & profiles",f4:"Strategy Cards · Dice",f4d:"Cards decide stage results; turn off for story mode",
 f5:"Minor Gallery",f5d:"Fan reactions as posts & comments",f6:"Emotion Images",f6d:"494 expressions for 30 contestants",
 f7:"Narration Language",f8:"Auxiliary Model",f8d:"Status logs, images & gallery handled separately",
-s1:"01 · Status Window",s2:"02 · Rank Reveal",s4:"04 · Strategy Cards",s4o:"Open in new tab ↗",s5:"05 · Minor Gallery",
+s1:"01 · Status Window",s2:"02 · Rank Reveal",s4:"04 · Strategy Cards",s5:"05 · Minor Gallery",
 staff:"Production · MC (9)",open:"",st1:"In the first message, pick role, language & options (setup screen is in Korean)",
 st2:"Press '이 설정으로 시작' (Start) to enter",st3:"Status window, cards, gallery & emotion images are set in Custom Toggles",
 notel:"NOTE",note:"Auxiliary-model features require Low Level Access and an auxiliary model setting.",tk:"Don't miss it!",dl1:"Download",dl2:"new tab",
@@ -588,8 +596,10 @@ document.querySelectorAll(".glang button").forEach(b=>b.onclick=()=>setLang(b.da
 /* roadmap */
 function renderRoad(){$("#road").innerHTML="";EPS.forEach(([n,t,v,s,f],i)=>{if(LANG==="en"){t=EPS_EN[i];v=VOTE_EN[i]}const d=el("div",{class:"ep "+s});d.innerHTML=`<div class="dot">${s==="done"?"✓":""}</div><div><small>${n}</small>${s==="now"?`<span class="now-tag">${LANG==="en"?"NOW":"지금"}</span>`:""}<h4>${t}</h4>${v?`<span class="vote${f?" final":""}">${v}</span>`:""}</div>`;$("#road").append(d)})}
 
-/* shots */
-document.querySelectorAll(".frame[data-src]").forEach(f=>{const i=new Image();i.alt="";i.onload=()=>{f.innerHTML="";f.append(i);f.onclick=()=>openLB(i.src,f.previousElementSibling.textContent)};i.onerror=()=>{f.innerHTML='<div class="ph">IMAGE COMING SOON</div>';f.style.cursor="default"};i.src=f.dataset.src});
+/* try zone */
+const TZN={status:"STATUS",reveal:"RANK REVEAL",dex:"CONTESTANT DEX",cards:"STRATEGY DECK",gallery:"MINOR GALLERY"};
+document.querySelectorAll(".tz-tab").forEach(b=>b.onclick=()=>{const t=b.dataset.tz,f=$("#tzf");document.querySelectorAll(".tz-tab").forEach(x=>x.classList.toggle("on",x===b));
+  f.src="demo/#"+t;$("#tzurl").textContent="NEXT STAGE · "+TZN[t];$("#tzpop").href="demo/#"+t});
 
 /* lightbox */
 function openLBsp(c,e){$("#lbimg").style.display="none";const d=$("#lbsp");d.style.cssText=cell(c,e);d.style.display="block";$("#lbcap").textContent=`${c.ko} · ${EMO_KO[e]||e}`;$("#lb").classList.add("on");document.body.classList.add("locked")}
