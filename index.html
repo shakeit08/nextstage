@@ -122,6 +122,11 @@ section{padding-top:84px}
 .shot .lab{display:inline-block;padding:5px 12px;background:var(--c,var(--blue));color:#fff;font-size:13px;font-weight:900;font-style:italic}
 .shot .frame{border:3px solid var(--navy);background:linear-gradient(180deg,#dde8fb,#f3f7ff);box-shadow:8px 8px 0 -3px #fff,8px 8px 0 0 var(--navy);min-height:180px;display:grid;place-items:center;cursor:zoom-in;overflow:hidden}
 .shot .frame img{width:100%}
+.shots{align-items:start}
+.shot .pop{float:right;margin-top:4px;font-size:12px;font-weight:800;color:var(--navy);text-decoration:none;border-bottom:2px solid currentColor}
+.shot .frame.live{cursor:default;display:block;height:var(--lh,785px)}
+.shot .frame.live iframe{display:block;width:100%;height:100%;border:0}
+@media(max-width:760px){.shot .frame.live{--lh:760px}}
 .shot .frame .ph{font-family:"Space Mono";font-size:11px;color:var(--mute);padding:30px;text-align:center}
 
 /* cast */
@@ -351,7 +356,8 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
 .snl .cd .hd{display:none}
 .snl .cd .bd{padding:16px 18px 18px}
 .snl .cd .cat{margin-bottom:2px}
-.snl .tk{position:relative;left:auto;right:auto;bottom:auto;height:30px;background:var(--ink2)}
+.snl .tk{position:relative;left:auto;right:auto;bottom:auto;height:22px;background:#07080d}
+.snl .tk div{font-size:11px;letter-spacing:.2em}
 .snl .dots,.snl .back,.snl .no,.snl .fr,.snl .frs,.snl .fam,.snl .giv,.snl .kor,.snl .ck,.snl .ui,.snl .thumbs{display:none}
 @media(max-width:820px){
   .snl .bst{align-items:flex-start;padding:12px 12px 24px}
@@ -435,7 +441,7 @@ footer .disp{color:#fff;font-size:20px;display:block;margin-bottom:6px}
     <div class="shots">
       <div class="shot fade" style="--c:var(--red)"><span class="lab"><span data-t="s1">01 · 상태창</span></span><div class="frame" data-src="assets/shots/status.png"></div></div>
       <div class="shot fade"><span class="lab"><span data-t="s2">02 · 순위 발표</span></span><div class="frame" data-src="assets/shots/ranking.png"></div></div>
-      <div class="shot fade" style="--c:var(--navy)"><span class="lab"><span data-t="s4">04 · 전략 카드</span></span><div class="frame" data-src="assets/shots/cards.png"></div></div>
+      <div class="shot fade" style="--c:var(--navy)"><span class="lab"><span data-t="s4">04 · 전략 카드</span></span><a class="pop" href="demo/cards.html" target="_blank" rel="noopener" data-t="s4o">새 창에서 열기 ↗</a><div class="frame live"><iframe src="demo/cards.html" loading="lazy" title="전략 카드 체험"></iframe></div></div>
       <div class="shot fade" style="--c:#d9703f"><span class="lab"><span data-t="s5">05 · 마이너 갤러리</span></span><div class="frame" data-src="assets/shots/gallery.png"></div></div>
     </div>
   </section>
@@ -526,7 +532,7 @@ f1:"Status Window",f1d:"Stats & popularity, changes shown as ▲▼",f2:"Votes �
 f3:"Contestant Index",f3d:"30 ID photos & profiles",f4:"Strategy Cards · Dice",f4d:"Cards decide stage results; turn off for story mode",
 f5:"Minor Gallery",f5d:"Fan reactions as posts & comments",f6:"Emotion Images",f6d:"494 expressions for 30 contestants",
 f7:"Narration Language",f8:"Auxiliary Model",f8d:"Status logs, images & gallery handled separately",
-s1:"01 · Status Window",s2:"02 · Rank Reveal",s4:"04 · Strategy Cards",s5:"05 · Minor Gallery",
+s1:"01 · Status Window",s2:"02 · Rank Reveal",s4:"04 · Strategy Cards",s4o:"Open in new tab ↗",s5:"05 · Minor Gallery",
 staff:"Production · MC (9)",open:"",st1:"In the first message, pick role, language & options (setup screen is in Korean)",
 st2:"Press '이 설정으로 시작' (Start) to enter",st3:"Status window, cards, gallery & emotion images are set in Custom Toggles",
 notel:"NOTE",note:"Auxiliary-model features require Low Level Access and an auxiliary model setting.",tk:"Don't miss it!",dl1:"Download",dl2:"new tab",
@@ -583,7 +589,7 @@ document.querySelectorAll(".glang button").forEach(b=>b.onclick=()=>setLang(b.da
 function renderRoad(){$("#road").innerHTML="";EPS.forEach(([n,t,v,s,f],i)=>{if(LANG==="en"){t=EPS_EN[i];v=VOTE_EN[i]}const d=el("div",{class:"ep "+s});d.innerHTML=`<div class="dot">${s==="done"?"✓":""}</div><div><small>${n}</small>${s==="now"?`<span class="now-tag">${LANG==="en"?"NOW":"지금"}</span>`:""}<h4>${t}</h4>${v?`<span class="vote${f?" final":""}">${v}</span>`:""}</div>`;$("#road").append(d)})}
 
 /* shots */
-document.querySelectorAll(".frame").forEach(f=>{const i=new Image();i.alt="";i.onload=()=>{f.innerHTML="";f.append(i);f.onclick=()=>openLB(i.src,f.previousElementSibling.textContent)};i.onerror=()=>{f.innerHTML='<div class="ph">IMAGE COMING SOON</div>';f.style.cursor="default"};i.src=f.dataset.src});
+document.querySelectorAll(".frame[data-src]").forEach(f=>{const i=new Image();i.alt="";i.onload=()=>{f.innerHTML="";f.append(i);f.onclick=()=>openLB(i.src,f.previousElementSibling.textContent)};i.onerror=()=>{f.innerHTML='<div class="ph">IMAGE COMING SOON</div>';f.style.cursor="default"};i.src=f.dataset.src});
 
 /* lightbox */
 function openLBsp(c,e){$("#lbimg").style.display="none";const d=$("#lbsp");d.style.cssText=cell(c,e);d.style.display="block";$("#lbcap").textContent=`${c.ko} · ${EMO_KO[e]||e}`;$("#lb").classList.add("on");document.body.classList.add("locked")}
